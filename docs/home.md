@@ -9,3 +9,10 @@ This is the documentation page for CoreyPHP.
 2. Syntax
 3. Files
     - CoreyPHP
+    - CoreyDB
+    - CoreyFiles
+    - CoreyForms
+    - CoreyFX
+    - CoreyHTML
+    - CoreySecurity
+    - CoreyTables
