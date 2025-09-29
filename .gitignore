@@ -1,6 +1,9 @@
 # Files to ignore
 index.php
 
+# Folders to ignore
+assets/
+
 # Extensions to ignore
 *.log
 *.zip
