@@ -6,8 +6,7 @@ This is the documentation page for CoreyPHP.
 ## Table of Contents
 
 1. Basics
-2. Syntax
-3. Files
+2. Files
     - CoreyPHP
     - CoreyDB
     - CoreyFiles
@@ -16,3 +15,4 @@ This is the documentation page for CoreyPHP.
     - CoreyHTML
     - CoreySecurity
     - CoreyTables
+
