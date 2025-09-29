@@ -1,0 +1,6 @@
+# Files to ignore
+index.php
+
+# Extensions to ignore
+*.log
+*.zip
