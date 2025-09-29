@@ -5,7 +5,7 @@ A PHP Class Library aimed at making front-end and back-end development easier, a
 
 ## Documentation
 
-For documentation see [here](docs/home.md)
+For documentation see [here](https://github.com/coreyavis/CoreyPHP/wiki)
 
 ## License
 
