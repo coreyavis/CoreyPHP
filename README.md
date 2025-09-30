@@ -36,11 +36,11 @@ $corey = new CoreyPHP();
 $obj = new CoreyDB();
 ```
 
-Third, use the included class object functions as documented in the [documentation](https://github.com/coreyavis/CoreyPHP/wiki).
+Third, use the included class object functions as outlined in the [documentation](docs/Home.md).
 
 ## Documentation
 
-For full documentation see [here](https://github.com/coreyavis/CoreyPHP/wiki)
+For full documentation see [here](docs/Home.md)
 
 ## License
 
