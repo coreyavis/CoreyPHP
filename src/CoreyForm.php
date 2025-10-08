@@ -1,63 +1,59 @@
 <?php
 /* ----------------------------------------------------------------------
  * @package		CoreyPHP
- * @name		CoreyDB
- * @file		CoreyDB.php
+ * @name		CoreyForm
+ * @file		CoreyForm.php
  * ---------------------------------------------------------------------*/
 
-class CoreyDB {
-    
+class CoreyForm {
+
     /* ----------------------------------------------------------------------
 	 * Public Resources - DO NOT EDIT
 	 * ----------------------------------------------------------------------*/
-    
+
     /* ----------------------------------------------------------------------
 	 * Private Resources - DO NOT EDIT
 	 * ----------------------------------------------------------------------*/
-    
+
     /* ----------------------------------------------------------------------
-	 * Config Variables
+	 * Config Variables - Defaults
 	 * ----------------------------------------------------------------------*/
 	private array $defaults = [
-        'host' => 'localhost',
-		'name' => '',
-		'user' => 'root',
-		'pass' => 'root',
-		'blacklist' => ['information_schema', 'performance_schema', 'mysql', 'phpmyadmin']
+        'pwdName' => 'password'
     ];
 	private array $config = [];
-    
+
     /* ----------------------------------------------------------------------
 	 * Developer Config
 	 * ----------------------------------------------------------------------*/
     private $debug = true; // NOTE: Change to false for live sites.
-    
+
     /* ----------------------------------------------------------------------
 	 * Constants / Regular Expressions - DO NOT EDIT
 	 * ----------------------------------------------------------------------*/
-    
-    
+
+
     /* ----------------------------------------------------------------------
-	 * DB::__construct()
-	 * 
+	 * Form::__construct()
+	 *
 	 * @param array $userConfig - Config options (optional)
 	 * @return NULL
 	 * ----------------------------------------------------------------------*/
     public function __construct(array $userConfig = []) {
-		
+
 	}
-    
+
     /* ----------------------------------------------------------------------
-	 * DB::config()
-	 * 
+	 * Form::config()
+	 *
 	 * @param mixed $config - Config options in array or config key for key/value pair
 	 * @param mixed $arg - Config value for key/value pair
 	 * @return object $this
 	 * ----------------------------------------------------------------------*/
-	public function config($config = null, $arg = null) {
+	public function config() {
 
 	}
-    
+
 }
 
 ?>

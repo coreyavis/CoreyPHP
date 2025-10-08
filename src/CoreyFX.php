@@ -3,24 +3,6 @@
  * @package		CoreyPHP
  * @name		CoreyFX
  * @file		CoreyFX.php
- * @version		0.1
- * @license		GNU General Public License version 3
- * @url			http://www.coreyavis.com/CoreyPHP.html
- * @author		Corey Avis <coreyavis@gmail.com>
- * @copyright	(C) 2014, 2025 Corey Avis
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License along
- * with this program; if not, see <http://www.gnu.org/licenses>.
  * ---------------------------------------------------------------------*/
 
 class CoreyFX {
@@ -36,6 +18,10 @@ class CoreyFX {
     /* ----------------------------------------------------------------------
 	 * Config Variables - Defaults
 	 * ----------------------------------------------------------------------*/
+	private array $defaults = [
+        'dp' => 2
+    ];
+	private array $config = [];
     
     /* ----------------------------------------------------------------------
 	 * Developer Config
@@ -48,146 +34,86 @@ class CoreyFX {
     
     
     /* ----------------------------------------------------------------------
-	 * CoreyFX::__construct()
+	 * FX::__construct()
 	 * 
-	 * @param array $config - Config options (optional)
-	 * @return class $this
+	 * @param array $userConfig - Config options (optional)
+	 * @return NULL
 	 * ----------------------------------------------------------------------*/
-    public function __construct($config = null) {
-		
-		set_error_handler(array($this, 'errorMsg'));
-		set_exception_handler(array($this, 'exceptionMsg'));
-		
-		if ($config !== null) {
-			if (!is_array($config)) $this->error('Config options must be supplied as an associative array!', 'input');
-			$this->config($config);
-		}
-		return $this;
-		
+    public function __construct(array $userConfig = []) {
+		$this->config = array_merge($this->defaults, $userConfig);
 	}
     
     /* ----------------------------------------------------------------------
-	 * CoreyFX::errorMsg()
-	 * 
-	 * @param integer $e - Level of error
-	 * @param string $msg - Error message
-	 * @param string $file - File causing error (optional)
-	 * @param integer $line - Line number causing error (optional)
-	 * @param array $context - Scope of error (optional)
-	 * @return bool true
-	 * ----------------------------------------------------------------------*/
-	public static function errorMsg($e, $msg = '', $file = '', $line = '', $context = '') {
-		
-		if (error_reporting() == 0) return;
-		switch($e) {
-			case E_USER_ERROR:
-				$title = 'PHP Error';
-				$error = '<b>'.$title.'</b>: '.$msg.' in '.$file.' on line '.$line.'. ['.$e.']<br />'."\n";
-			break;
-			case E_USER_WARNING:
-				$title = 'PHP Warning';
-				$error = '<b>'.$title.'</b>: '.$msg.'. ['.$e.']<br />'."\n";
-			break;
-			case E_USER_NOTICE: case E_USER_DEPRECATED:
-				$title = 'PHP Notice';
-				$error = '<b>'.$title.'</b>: '.$msg.'. ['.$e.']<br />'."\n";
-			break;
-			default:
-				$title = 'PHP Unknown Error';
-				$error = '<b>'.$title.'</b>: '.$msg.'. ['.$e.']<br />'."\n";
-			break;
-		}
-		$displayErrors = ini_get('display_errors');
-		if (($displayErrors === 1) || (strtolower($displayErrors) === 'on')) echo $error;
-		error_log($error);
-		if ($e == E_USER_ERROR) exit(1);
-		return true;
-		
-	}
-	
-	/* ----------------------------------------------------------------------
-	 * CoreyFX::exceptionMsg()
-	 * 
-	 * @param object $exception
-	 * @return bool true
-	 * ----------------------------------------------------------------------*/
-	public static function exceptionMsg($exception) {
-		
-		$title = 'PHP Exception';
-		$error = '<b>'.$title.'</b>: '.$exception->getMessage().' in '.$exception->getFile().' on line '.$exception->getLine().'. ['.$exception->getCode().']<br /><br />'."\n";
-		$error .= '<b>Stack Trace</b>:<br /><pre>'.$exception->getTraceAsString().'</pre><br />'."\n";
-		echo $error;
-		error_log($error);
-		return true;
-		
-	}
-	
-	/* ----------------------------------------------------------------------
-	 * CoreyFX::error()
-	 * 
-	 * @param string $msg - Error message
-	 * @param mixed $type - Type of error (error, database, function, warning, input, notice, output, deprecated) (default: notice)
-	 * @return bool $error
-	 * ----------------------------------------------------------------------*/
-	public function error($msg = '', $type = 'notice') {
-		
-		switch ($type) {
-			case 'error': case 'database': case 'function':
-				$msg = ($type != 'error'? strtoupper($type) . ' ' : '') . 'ERROR: ' . trim($msg);
-				$type = E_USER_ERROR;
-			break;
-			case 'warning': case 'input':
-				$msg = ($type != 'warning'? strtoupper($type) . ' ' : '') . ' WARNING: ' . trim($msg);
-				$type = E_USER_WARNING;
-			break;
-			case 'notice': case 'output':
-				$msg = ($type != 'notice'? strtoupper($type) . ' ' : '') . ' NOTICE: ' . trim($msg);
-				$type = E_USER_NOTICE;
-			break;
-			case 'deprecated':
-				$msg = 'NOTICE: ' . trim($msg);
-				$type = E_USER_DEPRECATED;
-			break;
-			default:
-				$msg = 'ERROR: ' . trim($msg);
-				if (!is_int($type) || ($type != E_USER_ERROR) || ($type != E_USER_WARNING) || ($type != E_USER_NOTICE) || ($type != E_USER_DEPRECATED)) $type = E_USER_NOTICE;
-			break;
-		}
-		if (($type == E_USER_DEPRECATED) && version_compare(PHP_VERSION, '5.3', '<')) $type = E_USER_NOTICE;
-		if ($this->debug === true) {
-			throw new Exception($msg);
-			$error = true;
-		} else {
-			$error = trigger_error($msg, $type);
-		}
-		return $error;
-		
-	}
-    
-    /* ----------------------------------------------------------------------
-	 * CoreyFX::config()
+	 * FX::config()
 	 * 
 	 * @param mixed $config - Config options in array or config key for key/value pair
 	 * @param mixed $arg - Config value for key/value pair
 	 * @return object $this
 	 * ----------------------------------------------------------------------*/
-	public function config($config = null, $arg = null) {
-		
-		if (!is_array($config) && (($config === null) || ($arg === null))) $this->error('Config function expects 2 parameters or 1 associative array!', 'input');
-		if (!is_array($config)) $config = array($config => $arg);
-		foreach ($config as $key => $arg) {
-			if (is_numeric($key)) $this->error('Invalid config key!', 'input');
-			switch ($key) {
-				/*case '':
-					
-				break;*/
-				default:
-					if (in_array($key, $this->config_keys)) $this->$key = $arg;
-				break;
+	public function config() {
+		/*$config = Config::getInstance();
+		$host = $config->get('db.host');
+		return $host;*/
+	}
+	
+	/* ----------------------------------------------------------------------
+	 * Array Functions
+	 * ----------------------------------------------------------------------*/
+	
+	/* ----------------------------------------------------------------------
+	 * ClassicoFX::extendArray()
+	 * 
+	 * @param array $extend - Array to extend
+	 * @param array $merge - Variable list of arrays to merge
+	 * @return array $extend - Merged arrays
+	 * ----------------------------------------------------------------------*/
+	public function extendArray($extend = null, $merge = null) {
+		//if (($extend !== null) && !is_array($extend)) $this->error('Function only extends arrays!', 'input');
+		if (($extend !== null) && ($merge !== null)) {
+			$arrays = func_get_args();
+			array_walk($arrays, function($array) {
+				//if (!is_array($array)) $this->error('Invalid array defined!', 'input');
+				foreach ($array as $key => $value) {
+					if (is_int($key)) {
+						$this->temp_array[] = $value;
+						unset($array[$key]);
+					} elseif (is_array($value)) {
+						foreach ($value as $skey => $svalue) {
+							if (is_int($skey)) {
+								$this->temp_array[$key][] = $svalue;
+								unset($array[$key][$skey]);
+							}
+						}
+					}
+				}
+			});
+			$extend = array_shift($arrays);
+			//if ($extend === null) $this->error('Invalid array!', 'input');
+			if (version_compare(PHP_VERSION, '5.3', '>=')) {
+				$extend = array_replace_recursive($extend, ...$arrays);
+			} else {
+				$extend = array_merge_recursive($extend, ...$arrays);
+			}
+			if ($this->temp_array !== null) {
+				if (version_compare(PHP_VERSION, '5.3', '>=')) {
+					$extend = array_replace_recursive($extend, $this->temp_array);
+				} else {
+					$extend = array_merge_recursive($extend, $this->temp_array);
+				}
+				$this->temp_array = null;
+				foreach ($extend as $key => $value) {
+					if (is_int($key) && is_array($value)) {
+						$this->temp_array[] = $value;
+						unset($extend[$key]);
+					}
+				};
+				if ($this->temp_array !== null) {
+					$extend[] = array_merge_recursive(...$this->temp_array);
+					$this->temp_array = null;
+				}
 			}
 		}
-		return $this;
-		
+		return array_splice($extend, 0);
 	}
     
 }
