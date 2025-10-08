@@ -32,10 +32,9 @@ require_once('autoload.php');
 $obj = new CoreyPHP();
 $db = new CoreyDB();
 ```
-3. Use the functions in each class as outlined in the documentation.
+3. Use the methods in each class as outlined in the documentation.
 ```
-$obj->function();
-$obj->function($variables);
+$obj->method();
 ```
 
 ### Classes

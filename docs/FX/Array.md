@@ -1,8 +1,8 @@
-# Array Functions
+# Array Methods
 
-The following functions are array functions in the FX class.
+The following methods are array functions in the FX class. These methods are designed to manipulate arrays.
 
-## Functions
+## Methods
 
 - [extendArray](#extendArray)
 
