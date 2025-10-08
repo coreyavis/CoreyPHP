@@ -1,10 +1,11 @@
 # CoreyPHP
 
-A PHP Class Library aimed at making front-end and back-end development easier, along with being a PHP learning tool.
+Streamline your PHP development and accelerate your journey with this dual-purpose class library. Designed to simplify common front-end and back-end tasks, you can use its robust set of functions as standalone tools to speed up coding, or integrate the full library to kickstart your next website project. It's the power of simplicity for both seasoned developers and those learning PHP.
 
 ## Table of Contents
 
 1. [Getting Started](#getting-started)
+2. [Classes](#classes)
 2. [Documentation](#documentation)
 3. [License](#license)
 
@@ -16,27 +17,38 @@ A PHP Class Library aimed at making front-end and back-end development easier, a
 
 Recommended: PHP version 7.0.0 or above
 
-*MySQLi is currently the only supported database extension used in this script and it must be installed if you plan on using CoreyDB.php.*
+*MySQLi or PDO if you plan on using a database.*
 
 > It is recommended to have a good general understanding of PHP coding.
 
 ### Usage
 
-First, you need to include the file you intend to use in your php script with the php include or require functions.
-
+1. Include the "autoload.php" file at the top of the page where you intend to use the library. I recommend using the require_once() php function.
 ```
-include_once('/src/CoreyPHP.php');
-require_once('/src/CoreyDB.php');
+require_once('autoload.php');
+```
+2. Create an instance of the class object you intend to use.
+```
+$obj = new CoreyPHP();
+$db = new CoreyDB();
+```
+3. Use the functions in each class as outlined in the documentation.
+```
+$obj->function();
+$obj->function($variables);
 ```
 
-Second, you need to create an instance of the class object. Name the variable to store your object in anything you'd like.
+### Classes
 
-```
-$corey = new CoreyPHP();
-$obj = new CoreyDB();
-```
-
-Third, use the included class object functions as outlined in the [documentation](docs/Home.md).
+- CoreyPHP
+- CoreyDB: Database Management
+- CoreyFile: File Management
+- CoreyForm: Form Builder
+- CoreyFX: Formulas and Equations
+- CoreyHTML: HTML Generator
+- CoreySecurity: Security Class
+- CoreySession: Session Management
+- CoreyTable: Table Builder
 
 ## Documentation
 
