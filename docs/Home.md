@@ -18,7 +18,7 @@ This documentation will help give you a better understanding of how each class a
 
 Recommended: PHP version 7.0.0 or above
 
-*MySQLi or PDO if you plan on using a database.*
+MySQLi or PDO if you plan on using a database.
 
 > It is recommended to have a good general understanding of PHP coding.
 
@@ -69,7 +69,7 @@ $db->method($parameter);
 
 "**Class methods**" are the functions defined within a class. These methods can accept zero, one, or multiple *parameters* (arguments), some of which may be <u>optional</u>.
 
-A method's *return value* is entirely dependent on its task. While some methods return strings, integers, or arrays others return a boolean (==true== or ==false==). A ==true== return typically indicates the method executed successfully, while ==false== indicates failure. If a method returns ==$this==, it returns the class object itself, enabling **method chaining** to string multiple operations together.
+A method's *return value* is entirely dependent on its task. While some methods return strings, integers, or arrays others return a boolean (`true` or `false`). A `true` return typically indicates the method executed successfully, while `false` indicates failure. If a method returns `$this`, it returns the class object itself, enabling **method chaining** to string multiple operations together.
 
 #### Method Chaining
 
@@ -89,7 +89,7 @@ $var = $obj->method();
 echo $obj->method();
 ```
 
-> If a method returns an array, you must first assign it to a variable for further processing, as the ==echo== statement cannot directly output complex data types. Use functions like ==print_r()== to display the array's contents or iterate over it using a loop to properly display or manipulate the data.
+> If a method returns an array, you must first assign it to a variable for further processing, as the `echo` statement cannot directly output complex data types. Use functions like `print_r()` to display the array's contents or iterate over it using a loop to properly display or manipulate the data.
 
 ## Documentation by Class
 

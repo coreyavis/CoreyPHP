@@ -5,4 +5,4 @@ The following methods are part of the CoreyFX class. This class is a collection 
 ## Method Categories
 
 - [Array Methods](Array.md)
-
+    - [extendArray](Array.md#extendArray)
