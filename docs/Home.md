@@ -7,7 +7,7 @@ This documentation will help give you a better understanding of how each class a
 1. [Getting Started](#getting-started)
     - [Prerequisites](#prerequisites)
     - [Usage](#usage)
-2. [Documentation by Class](#classes)
+2. [Documentation by Class](#documentation-by-class)
 
 ## Getting Started
 
@@ -59,7 +59,7 @@ $db = new CoreyDB();
 $db->select();
 ```
 
-## Classes
+## Documentation by Class
 
 - CoreyPHP
 - CoreyDB: Database Management
