@@ -3,7 +3,7 @@ index.php
 docs/_MethodTemp.md
 
 # Folders to ignore
-assets/
+/assets
 
 # Extensions to ignore
 *.log
