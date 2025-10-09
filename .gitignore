@@ -1,5 +1,6 @@
 # Files to ignore
 index.php
+docs/_MethodTemp.md
 
 # Folders to ignore
 assets/
