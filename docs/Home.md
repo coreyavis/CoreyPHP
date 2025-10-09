@@ -8,7 +8,8 @@ This documentation will help give you a better understanding of how each class a
     - [Prerequisites](#prerequisites)
     - [Usage](#usage)
     - [Methods](#methods)
-2. [Documentation by Class](#documentation-by-class)
+    - [Config](#config)
+2. [Classes](#classes)
 
 ## Getting Started
 
@@ -32,18 +33,18 @@ Option 1: (**Recommended**)
 ```
 require_once('autoload.php');
 ```
+
 2. Create an instance of the class object you intend to use.
 ```
 $obj = new CoreyPHP();
 $db = new CoreyDB();
 ```
+
 3. Use the methods in each class as outlined in this documentation.
 ```
 $obj->method();
 $obj->method($parameter);
 ```
-
----
 
 Option 2:
 
@@ -51,10 +52,12 @@ Option 2:
 ```
 require_once('src/CoreyDB.php');
 ```
+
 2. Create an instance of the class object.
 ```
 $db = new CoreyDB();
 ```
+
 3. Use the methods in the class as outlined in this documentation.
 ```
 $db->method();
@@ -83,7 +86,6 @@ $obj->method->()method();
 #### Returned Value
 
 Once a value has been returned you can either assign it to a variable for use later or display it on your page.
-
 ```
 $var = $obj->method();
 echo $obj->method();
@@ -91,13 +93,40 @@ echo $obj->method();
 
 > If a method returns an array, you must first assign it to a variable for further processing, as the `echo` statement cannot directly output complex data types. Use functions like `print_r()` to display the array's contents or iterate over it using a loop to properly display or manipulate the data.
 
-## Documentation by Class
+### Config
+
+Every class comes with a set of default configuration options that are stored in an array. You can change these settings in two ways.
+
+Option 1:
+
+You can define the configuration options in an array when you create the instance of the class.
+```
+$db = new CoreyDB(['key' => 'value']);
+$db = new CoreyDB(['int' => 5, 'bool' => true]);
+```
+
+Option 2:
+
+You can use the class's `setConfig()` method to set options, providing it with either an array of settings or a single key/value pair.
+```
+$db->setConfig(['key' => 'value']);
+$db->setConfig('key', 'value');
+```
+
+#### Config Options
+
+You have two ways to see the configuration options:
+
+1. Check the documentation: Refer to the [Configuration Options](Config.md) section for a complete overview.
+2. Use the method: Call the `getConfig()` method in each class to return the current defaults as an array.
+
+## Classes
 
 - CoreyPHP
 - CoreyDB: Database Management
 - CoreyFile: File Management
 - CoreyForm: Form Builder
-- [CoreyFX](FX/FX.md): Formulas and Equations
+- [CoreyFX](CoreyFX.md): Formulas and Equations
 - CoreyHTML: HTML Generator
 - CoreySecurity: Security Class
 - CoreySession: Session Management
