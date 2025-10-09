@@ -32,26 +32,42 @@ class CoreySession {
 	 * Constants / Regular Expressions - DO NOT EDIT
 	 * ----------------------------------------------------------------------*/
 
-
     /* ----------------------------------------------------------------------
-	 * Session::__construct()
+	 * CoreySession::__construct()
 	 *
 	 * @param array $userConfig - Config options (optional)
 	 * @return NULL
 	 * ----------------------------------------------------------------------*/
     public function __construct(array $userConfig = []) {
-
+		$this->setConfig($userConfig);
 	}
 
-    /* ----------------------------------------------------------------------
-	 * Session::config()
+	/* ----------------------------------------------------------------------
+	 * CoreySession::setConfig()
 	 *
-	 * @param mixed $config - Config options in array or config key for key/value pair
+	 * @param mixed $userConfig - Config options in array or config key for key/value pair
 	 * @param mixed $arg - Config value for key/value pair
-	 * @return object $this
+	 * @return bool true
 	 * ----------------------------------------------------------------------*/
-	public function config() {
+	// TODO: Add key/value option.
+	public function setConfig(array $userConfig = []) {
+		$this->config = array_merge($this->defaults, $userConfig);
+		return true;
+	}
 
+	/* ----------------------------------------------------------------------
+	 * CoreySession::getConfig()
+	 *
+	 * @param string $key - Config key (optional)
+	 * @return mixed $config
+	 * ----------------------------------------------------------------------*/
+	// TODO: Add readable option for array
+	public function getConfig($key = null) {
+		if ($key !== null) {
+			if (isset($this->config[$key])) return $this->config[$key];
+			return null;
+		}
+		return $this->config;
 	}
 
 }

@@ -31,29 +31,43 @@ class CoreyFX {
     /* ----------------------------------------------------------------------
 	 * Constants / Regular Expressions - DO NOT EDIT
 	 * ----------------------------------------------------------------------*/
-    
-    
+
     /* ----------------------------------------------------------------------
-	 * FX::__construct()
+	 * CoreyFX::__construct()
 	 * 
 	 * @param array $userConfig - Config options (optional)
 	 * @return NULL
 	 * ----------------------------------------------------------------------*/
     public function __construct(array $userConfig = []) {
-		$this->config = array_merge($this->defaults, $userConfig);
+		$this->setConfig($userConfig);
 	}
-    
-    /* ----------------------------------------------------------------------
-	 * FX::config()
+
+	/* ----------------------------------------------------------------------
+	 * CoreyFX::setConfig()
 	 * 
-	 * @param mixed $config - Config options in array or config key for key/value pair
+	 * @param mixed $userConfig - Config options in array or config key for key/value pair
 	 * @param mixed $arg - Config value for key/value pair
-	 * @return object $this
+	 * @return bool true
 	 * ----------------------------------------------------------------------*/
-	public function config() {
-		/*$config = Config::getInstance();
-		$host = $config->get('db.host');
-		return $host;*/
+	// TODO: Add key/value option.
+	public function setConfig(array $userConfig = []) {
+		$this->config = array_merge($this->defaults, $userConfig);
+		return true;
+	}
+
+	/* ----------------------------------------------------------------------
+	 * CoreyFX::getConfig()
+	 *
+	 * @param string $key - Config key (optional)
+	 * @return mixed $config
+	 * ----------------------------------------------------------------------*/
+	// TODO: Add readable option for array
+	public function getConfig($key = null) {
+		if ($key !== null) {
+			if (isset($this->config[$key])) return $this->config[$key];
+			return null;
+		}
+		return $this->config;
 	}
 	
 	/* ----------------------------------------------------------------------
@@ -61,15 +75,15 @@ class CoreyFX {
 	 * ----------------------------------------------------------------------*/
 	
 	/* ----------------------------------------------------------------------
-	 * ClassicoFX::extendArray()
+	 * CoreyFX::extendArray()
 	 * 
 	 * @param array $extend - Array to extend
-	 * @param array $merge - Variable list of arrays to merge
-	 * @return array $extend - Merged arrays
+	 * @param array $arrays - Variable list of arrays to add
+	 * @return array $extend - Extended array
 	 * ----------------------------------------------------------------------*/
-	public function extendArray($extend = null, $merge = null) {
+	public function extendArray($extend = null, $arrays = null) {
 		//if (($extend !== null) && !is_array($extend)) $this->error('Function only extends arrays!', 'input');
-		if (($extend !== null) && ($merge !== null)) {
+		if (($extend !== null) && ($arrays !== null)) {
 			$arrays = func_get_args();
 			array_walk($arrays, function($array) {
 				//if (!is_array($array)) $this->error('Invalid array defined!', 'input');

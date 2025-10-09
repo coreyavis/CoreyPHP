@@ -18,7 +18,10 @@ class CoreyPHP {
     /* ----------------------------------------------------------------------
 	 * Config Variables
 	 * ----------------------------------------------------------------------*/
-	private array $defaults = [];
+	private array $defaults = [
+		'key' => 'value',
+		'string' => 'integer'
+	];
 	private array $config = [];
     
     /* ----------------------------------------------------------------------
@@ -29,28 +32,43 @@ class CoreyPHP {
     /* ----------------------------------------------------------------------
 	 * Constants / Regular Expressions - DO NOT EDIT
 	 * ----------------------------------------------------------------------*/
-    
-    
+
     /* ----------------------------------------------------------------------
 	 * CoreyPHP::__construct()
 	 * 
-	 * @param array $config - Config options (optional)
+	 * @param array $userConfig - Config options (optional)
 	 * @return NULL
 	 * ----------------------------------------------------------------------*/
-    public function __construct(array $config = []) {
-		//set_error_handler(['Errors', 'errorMsg']);
-		//set_exception_handler(['Errors', 'exceptionMsg']);
+    public function __construct(array $userConfig = []) {
+		$this->setConfig($userConfig);
 	}
-    
-    /* ----------------------------------------------------------------------
-	 * CoreyPHP::config()
+
+	/* ----------------------------------------------------------------------
+	 * CoreyPHP::setConfig()
 	 * 
-	 * @param mixed $config - Config options in array or config key for key/value pair
+	 * @param mixed $userConfig - Config options in array or config key for key/value pair
 	 * @param mixed $arg - Config value for key/value pair
-	 * @return object $this
+	 * @return bool true
 	 * ----------------------------------------------------------------------*/
-	public function config() {
-		return 'This works.';
+	// TODO: Add key/value option.
+	public function setConfig(array $userConfig = []) {
+		$this->config = array_merge($this->defaults, $userConfig);
+		return true;
+	}
+
+	/* ----------------------------------------------------------------------
+	 * CoreyPHP::getConfig()
+	 *
+	 * @param string $key - Config key (optional)
+	 * @return mixed $config
+	 * ----------------------------------------------------------------------*/
+	// TODO: Add readable option for array
+	public function getConfig($key = null) {
+		if ($key !== null) {
+			if (isset($this->config[$key])) return $this->config[$key];
+			return null;
+		}
+		return $this->config;
 	}
     
 }
