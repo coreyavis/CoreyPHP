@@ -47,9 +47,8 @@ All libraries inherit global configuration parsing, custom error tracking, and c
 - CoreyPHP: Core Foundation, Global Settings, and Utility Base Class
 - CoreyDB: Database Management & Query Building
 - CoreyFile: File System Management
-- CoreyForm: Form Builder
 - CoreyFX: Formulas and Equations
-- CoreyTable: Table Builder
+- CoreySecurity: Security Suite
 
 ## Documentation
 
