@@ -48,7 +48,7 @@ class CoreyFile extends CoreyPHP {
 	 * ----------------------------------------------------------------------*/
     public function __construct(array $userConfig = []) {
 		$defaults = [
-			'debug' => true,
+			'debug' => false,
 			'override' => false
 		];
 		$this->config = array_merge($defaults, $this->config);

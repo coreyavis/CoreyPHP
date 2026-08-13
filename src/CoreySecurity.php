@@ -56,7 +56,7 @@ class CoreySecurity extends CoreyPHP {
     public function __construct(array $userConfig = []) {
 		$defaults = [
             'algorithm' => 'sha256',
-			'debug' => true,
+			'debug' => false,
             'exclude' => [
 				'similar' => true
 			],

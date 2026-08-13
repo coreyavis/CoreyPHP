@@ -56,7 +56,7 @@ class CoreyFX extends CoreyPHP {
     public function __construct(array $userConfig = []) {
 		$defaults = [
 			'abbr' => false,
-			'debug' => true,
+			'debug' => false,
 			'dp' => 2,
 			'override' => false
 		];

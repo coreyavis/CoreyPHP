@@ -37,7 +37,7 @@ class CoreyPHP {
 				'minutes' => 0
 			]
 		],
-		'debug' => true,
+		'debug' => false,
 		'domain' => '',
 		'dp' => 2,
 		'override' => false,

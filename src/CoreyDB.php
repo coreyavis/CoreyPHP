@@ -75,7 +75,7 @@ class CoreyDB extends CoreyPHP {
 				'pass' => 'root',
 				'user' => 'root'
 			],
-			'debug' => true,
+			'debug' => false,
 			'engine' => 'InnoDB',
 			'glue' => ' ',
 			'output' => 'auto',
