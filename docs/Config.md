@@ -69,19 +69,7 @@ These configuration options are unique to its class.
 
 ### CoreyFile
 
-| Config Key | Default Value | Allowed Values | Description |
-| --- | --- | --- | --- |
-|  |  |  |  |
-|  |  |  |  |
-|  |  |  |  |
-
-### CoreyForm
-
-| Config Key | Default Value | Allowed Values | Description |
-| --- | --- | --- | --- |
-|  |  |  |  |
-|  |  |  |  |
-|  |  |  |  |
+*No configuration options currently exist!*
 
 ### CoreyFX
 
@@ -101,14 +89,6 @@ These configuration options are unique to its class.
 | numbers | true | *bool* | Allow numbers in password generation. |
 | symbols | true | *bool* | Allow symbols in password generation. |
 | uppercase | true | *bool* | Allow uppercase letters in password generation. |
-
-### CoreyTable
-
-| Config Key | Default Value | Allowed Values | Description |
-| --- | --- | --- | --- |
-|  |  |  |  |
-|  |  |  |  |
-|  |  |  |  |
 
 ## Developer Config
 
