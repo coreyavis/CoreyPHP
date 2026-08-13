@@ -1,6 +1,6 @@
 # CoreyPHP
 
-Streamline your PHP development and accelerate your journey with this dual-purpose class library. Designed to simplify common front-end and back-end tasks, you can use its robust set of functions as standalone tools to speed up coding, or integrate the full library to kickstart your next website project. It's the power of simplicity for both seasoned developers and those learning PHP.
+Streamline your PHP development and accelerate your journey with this dual-purpose class library ecosystem. Built on a shared core architecture, you can integrate individual libraries standalone to speed up coding, or seamlessly link them together into a cross-communicating data pipeline. It's the power of simplicity for both seasoned developers and those learning PHP.
 
 ## Table of Contents
 
@@ -13,40 +13,42 @@ Streamline your PHP development and accelerate your journey with this dual-purpo
 
 ### Prerequisites
 
-**Required**: PHP version 5.3.0 or above
+- **Required**: PHP version 8.4 or above
+- **Core Dependancy**: The `CoreyPHP.php` base class file must always be present in your `src/` folder, as all other libraries extend from it.
+- **Database**: MySQLi is required if you plan on using the database component (`CoreyDB`).
 
-Recommended: PHP version 7.0.0 or above
-
-*MySQLi or PDO if you plan on using a database.*
-
-> It is recommended to have a good general understanding of PHP coding.
+> It is recommended to have a good general understanding of Object-Oriented PHP coding.
 
 ### Usage
 
-1. Include the "autoload.php" file at the top of the page where you intend to use the library. I recommend using the require_once() php function.
+1. Include the `autoload.php` file at the top of the page where you intend to use the libraries. It is highly recommended to use the `require_once()` php function.
+
 ```
 require_once('autoload.php');
 ```
-2. Create an instance of the class object you intend to use.
+
+2. Create an instance of the specific sub-library class object you intend to use. You do not need to manually initialize the base `CoreyPHP` class first; the sub-libraries will automatically initialize it in the background.
+
 ```
-$obj = new CoreyPHP();
 $db = new CoreyDB();
-```
-3. Use the methods in each class as outlined in the documentation.
-```
-$obj->method();
+$fx = new CoreyFX();
 ```
 
-### Classes
+3. Call the methods directly. Any core utility methods (like `getIP()` or `arrayToJson()`) are inherited automatically and can be executed straight from the sub-library object:
 
-- CoreyPHP
-- CoreyDB: Database Management
-- CoreyFile: File Management
+```
+$db->method();
+```
+
+## Classes
+
+All libraries inherit global configuration parsing, custom error tracking, and core utility methods directly from the core file:
+
+- CoreyPHP: Core Foundation, Global Settings, and Utility Base Class
+- CoreyDB: Database Management & Query Building
+- CoreyFile: File System Management
 - CoreyForm: Form Builder
 - CoreyFX: Formulas and Equations
-- CoreyHTML: HTML Generator
-- CoreySecurity: Security Class
-- CoreySession: Session Management
 - CoreyTable: Table Builder
 
 ## Documentation
