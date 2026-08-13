@@ -59,4 +59,4 @@ For full documentation see [here](docs/Home.md)
 
 CoreyPHP is licensed under the [GNU General Public License v3.0](LICENSE)
 
-![GitHub License](https://img.shields.io/github/license/coreyavis/CoreyPHP)
+![GitHub License](https://img.shields.io/github/license/coreyavis/CoreyPHP?branch=main)
