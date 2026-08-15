@@ -44,15 +44,16 @@ $db->method();
 
 All libraries inherit global configuration parsing, custom error tracking, and core utility methods directly from the core file:
 
-- CoreyPHP: Core Foundation, Global Settings, and Utility Base Class
-- CoreyDB: Database Management & Query Building
-- CoreyFile: File System Management
-- CoreyFX: Formulas and Equations
-- CoreySecurity: Security Suite
+- **CoreyPHP**: Core Foundation, Global Settings, and Utility Base Class
+- **CoreyDB**: Database Management & Query Building
+- **CoreyFile**: File System Management
+- **CoreyFX**: Formulas and Equations
+- **CoreySecurity**: Security Suite
 
 ## Documentation
 
-For full documentation see [here](docs/Home.md)
+- For full documentation see [CoreyPHP Documentation](docs/Home.md)
+- Check out the [Changelog](CHANGELOG.md) to see a history of changes, new features, and updates.
 
 ## License
 
