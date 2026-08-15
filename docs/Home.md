@@ -19,6 +19,8 @@ This documentation will help give you a better understanding of how each class, 
 
 ## Classes
 
+Documentation by Class
+
 - [CoreyPHP](CoreyPHP.md): Core Foundation, Global Settings, and Utility Base Class
 - [CoreyDB](CoreyDB.md): Database Management & Query Building
 - [CoreyFile](CoreyFile.md): File System Management

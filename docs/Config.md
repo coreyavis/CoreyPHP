@@ -10,10 +10,8 @@ This lists all configuration options for the CoreyPHP class, organized into glob
     - [CoreyPHP](#coreyphp)
     - [CoreyDB](#coreydb)
     - [CoreyFile](#coreyfile)
-    - [CoreyForm](#coreyform)
     - [CoreyFX](#coreyfx)
     - [CoreySecurity](#coreysecurity)
-    - [CoreyTable](#coreytable)
 4. [Developer Config](#developer-config)
 
 ## Config Methods
