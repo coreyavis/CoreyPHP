@@ -31,7 +31,7 @@ When a string is supplied to `setPath`, it evaluates the target directory using 
 
 1. Standard Absolute Path Placement
 
-If you provide a complete, existing absolute path, it normalizes the slashes to your configured separator and updates the state.
+If you provide a complete, existing absolute path, it normalizes the slashes and updates the state.
 
 ```
 $file->setPath('/var/www/project');
@@ -58,7 +58,7 @@ $file->setPath('src');
 
 ## Debug Errors
 
-- Triggers a warning if the path is invalid.
+- Triggers a warning if the path is invalid or does not exist on disk.
 
 ---
 [Home](../Home.md) | [CoreyFile](../CoreyFile.md) | [Environment](../CoreyFile.md#environment)

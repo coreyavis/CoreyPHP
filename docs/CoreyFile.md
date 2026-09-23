@@ -45,6 +45,7 @@ The following methods are responsible for managing the state, metadata, and oper
 - [getFolders](CoreyFile/getFolders.md) - Get a list of folders
 - [getParents](CoreyFile/getParents.md) - Get a list of parent directories
 - [setPath](CoreyFile/setPath.md) - Set new path for file management
+    - [setOutputPath](CoreyFile/setOutputPath.md) - Set output path for file generation methods
 
 ### Structure
 
