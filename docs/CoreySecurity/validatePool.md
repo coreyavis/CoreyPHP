@@ -15,7 +15,8 @@ validatePool(string $pool): bool
 
 ## Return Value
 
-Returns `true` on success.
+(bool)
+: Returns `true` on success.
 
 ### Validation Rules
 

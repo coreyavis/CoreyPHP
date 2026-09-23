@@ -18,7 +18,8 @@ setSession(string $key, mixed $value): bool
 
 ## Return Value
 
-Returns `true`, always. 
+(bool)
+: Returns `true`, always. 
 
 ## Examples
 

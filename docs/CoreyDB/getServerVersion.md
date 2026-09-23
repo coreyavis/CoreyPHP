@@ -16,7 +16,8 @@ getServerVersion(): string
 
 ## Return Value
 
-Returns the software version of the connected MySQL server.
+(string)
+: Returns the software version of the connected MySQL server.
 
 ## Examples
 

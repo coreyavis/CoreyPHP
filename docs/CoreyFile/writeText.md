@@ -21,7 +21,8 @@ writeText(string $filename, string $text = '', bool $overwrite = false): bool
 
 ## Return Value
 
-Returns `true` if the file was successfully created or updated, or `false` if the target file already exists (when `$overwrite` is `false`) or cannot be created/opened.
+(bool)
+: Returns `true` if the file was successfully created or updated, or `false` if the target file already exists (when `$overwrite` is `false`) or cannot be created/opened.
 
 ## Examples
 

@@ -14,9 +14,9 @@ autoDetectDomain(): string
 
 ## Return Value
 
-Returns a normalized domain string prefixed with a wildcard dot (e.g., `".example.com"`) for valid HTTP web requests.
-
-Returns an empty string (`""`) for `localhost`, direct IP addresses, missing host headers, or local development environments where wildcard domain cookies are rejected by the web browsers.
+(string)
+: Returns a normalized domain string prefixed with a wildcard dot (e.g., `".example.com"`) for valid HTTP web requests.
+: Returns an empty string (`""`) for `localhost`, direct IP addresses, missing host headers, or local development environments where wildcard domain cookies are rejected by the web browsers.
 
 ## Examples
 

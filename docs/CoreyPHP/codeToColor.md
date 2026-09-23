@@ -19,7 +19,8 @@ codeToColor(string|int $colorCode): string
 
 ## Return Value
 
-Returns the lowercase common name of the color (e.g., `"yellow"`, `"blue"`). Defaults to `"white"` if the code is unrecognized.
+(string)
+: Returns the lowercase common name of the color (e.g., `"yellow"`, `"blue"`). Defaults to `"white"` if the code is unrecognized.
 
 ## Examples
 

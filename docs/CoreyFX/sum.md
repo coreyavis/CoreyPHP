@@ -15,9 +15,9 @@ sum(array|integer|float ...$args): float
 
 ## Return Value
 
-Returns the sum of all real numbers.
-
-Returns `0` if the input is empty.
+(float)
+: Returns the sum of all real numbers.
+: Returns `0` if the input is empty.
 
 ## Examples
 

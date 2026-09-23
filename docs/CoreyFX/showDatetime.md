@@ -18,7 +18,8 @@ showDatetime(string|int|null $timestamp = null, bool $abbr = false): string
 
 ## Return Value
 
-Returns a formatted datetime string.
+(string)
+: Returns a formatted datetime string.
 
 ## Examples
 

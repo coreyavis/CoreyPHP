@@ -16,7 +16,8 @@ getProtocolVersion(): integer
 
 ## Return Value
 
-Returns an integer representing the MySQL protocol version.
+(integer)
+: Returns an integer representing the MySQL protocol version.
 
 ## Examples
 

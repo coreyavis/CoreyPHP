@@ -30,7 +30,8 @@ method(float $balance = 0.0, float $apr = 12.0, integer $days = 30, integer $day
 
 Returns the calculated interest as a rounded `float`, or as a formatted `string` (e.g., `"$14.79"`) if `$asString` is set to `true`.
 
-Returns `0.0` or `"$0.00"` for zero or negative balances/days.
+(string|float)
+: Returns `0.0` or `"$0.00"` for zero or negative balances/days.
 
 ## Examples
 

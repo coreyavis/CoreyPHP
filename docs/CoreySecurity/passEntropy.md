@@ -42,7 +42,8 @@ The method automatically categorizes the password's strength into one of seven d
 
 ## Return Value
 
-Returns the entropy of the password as a float, or as a string with `bits` appended if $format is set to `true`.
+(string|float)
+: Returns the entropy of the password as a float, or as a string with `bits` appended if $format is set to `true`.
 
 > Context-Aware Pool Math: Rather than relying on rigid pool sizes, the method dynamically checks which configuration choices are active (e.g., `uppercase`, `numbers`, `symbols`) and scans the lookalike list (`SIMILARLIST`) with precise regular expressions to count exactly what was removed.
 

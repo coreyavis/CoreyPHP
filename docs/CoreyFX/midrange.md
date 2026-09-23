@@ -15,9 +15,9 @@ midrange(array|integer|float ...$args): float
 
 ## Return Value
 
-Returns the midpoint of all real numbers.
-
-Returns `0` if the input is empty.
+(float)
+: Returns the midpoint of all real numbers.
+: Returns `0` if the input is empty.
 
 ## Examples
 

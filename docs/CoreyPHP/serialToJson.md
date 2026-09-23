@@ -15,9 +15,9 @@ serialToJson(string $serial): string
 
 ## Return Value
 
-Returns a JSON formatted string representation of the deserialized data on success.
-
-Returns a JSON empty array string (`"[]"`) if the input is malformed, corrupted, or decodes into a non-array scalar value.
+(string)
+: Returns a JSON formatted string representation of the deserialized data on success.
+: Returns a JSON empty array string (`"[]"`) if the input is malformed, corrupted, or decodes into a non-array scalar value.
 
 > :pushpin: Chains `serialToArray` and `arrayToJson` to safely handle serialized data without executing unexpected class instances or throwing uncaught exceptions.
 

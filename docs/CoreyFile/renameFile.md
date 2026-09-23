@@ -20,7 +20,8 @@ renameFile(string $filename, string $name): bool
 
 ## Return Value
 
-Returns `true` if the file was successfully renamed, or `false` on failure.
+(bool)
+: Returns `true` if the file was successfully renamed, or `false` on failure.
 
 ## Examples
 

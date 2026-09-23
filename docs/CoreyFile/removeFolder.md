@@ -15,7 +15,8 @@ removeFolder(string $folder): bool
 
 ## Return Value
 
-Returns `true` on success and `false` if the folder doesn't exist, or if it contains files/subfolders.
+(bool)
+: Returns `true` on success and `false` if the folder doesn't exist, or if it contains files/subfolders.
 
 ## Examples
 

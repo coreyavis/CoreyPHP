@@ -14,7 +14,8 @@ preview(): string
 
 ## Return Value
 
-Returns the compiled SQL statement for the current query builder instance.
+(string)
+: Returns the compiled SQL statement for the current query builder instance.
 
 ## Examples
 

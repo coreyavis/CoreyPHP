@@ -19,7 +19,8 @@ codeToRgb(string|int $colorCode): array
 
 ## Return Value
 
-Returns a 3-element array matching `[red, green, blue]` where each element is an integer between `0` and `255`. Defaults to `[255, 255, 255]` (white) if unrecognized.
+(array)
+: Returns a 3-element array matching `[red, green, blue]` where each element is an integer between `0` and `255`. Defaults to `[255, 255, 255]` (white) if unrecognized.
 
 ## Examples
 

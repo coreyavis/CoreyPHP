@@ -14,9 +14,9 @@ isHttps(): bool
 
 ## Return Value
 
-Returns `true` if the request was served over HTTPS or terminated through an SSL reverse proxy.
-
-Returns `false` if the request was served over plain, unencrypted HTTP (e.g., standard local development environments).
+(bool)
+: Returns `true` if the request was served over HTTPS or terminated through an SSL reverse proxy.
+: Returns `false` if the request was served over plain, unencrypted HTTP (e.g., standard local development environments).
 
 ## Examples
 

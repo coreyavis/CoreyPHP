@@ -15,7 +15,8 @@ sqlDate(string|integer|null $datetime): string
 
 ## Return Value
 
-Returns the SQL date for a given date or date/time, or current time if *datetime* is `null`.
+(string)
+: Returns the SQL date for a given date or date/time, or current time if *datetime* is `null`.
 
 ## Examples
 

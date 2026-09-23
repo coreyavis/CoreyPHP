@@ -15,9 +15,9 @@ spread(array|integer|float ...$args): float
 
 ## Return Value
 
-Returns the spread of all real numbers. (*Also known as the range which is a reserved word in php.*)
-
-Returns `0` if the input is empty.
+(float)
+: Returns the spread of all real numbers. (*Also known as the range which is a reserved word in php.*)
+: Returns `0` if the input is empty.
 
 ## Examples
 

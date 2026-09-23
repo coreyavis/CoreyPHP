@@ -15,9 +15,9 @@ isEmpty(string $folder): bool
 
 ## Return Value
 
-Returns `true` if the folder exists and contains no files or subdirectories.
-
-Returns `false` if the folder contains files/subdirectories, does not exist, or is unreadable due to permission issues.
+(bool)
+: Returns `true` if the folder exists and contains no files or subdirectories.
+: Returns `false` if the folder contains files/subdirectories, does not exist, or is unreadable due to permission issues.
 
 > :pushpin: Since a standard empty directory contains `.` and `..`, a count of 2 or less subdirectories confirms the directory is empty.
 

@@ -28,7 +28,8 @@ createPng(string $filename, ?string $colors = null, int $width = 1, int $height 
 
 ## Return Value
 
-Returns the absolute `string` path to the saved file on success, or `false` on failure.
+(string|bool)
+: Returns the absolute `string` path to the saved file on success, or `false` on failure.
 
 ## Examples
 

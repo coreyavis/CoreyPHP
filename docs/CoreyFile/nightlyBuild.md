@@ -15,9 +15,9 @@ nightlyBuild(string|integer|null $date = null): float
 
 ## Return Value
 
-Returns the number of days elapsed since `$date`.
-
-Returns `0` if `$date` is `null` or unparseable.
+(float)
+: Returns the number of days elapsed since `$date`.
+: Returns `0` if `$date` is `null` or unparseable.
 
 ## Examples
 

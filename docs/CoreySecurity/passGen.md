@@ -26,7 +26,8 @@ passGen(integer $len = 16, string $exclusions = ''): string
 
 ## Return Value
 
-Returns a secure password at specified length.
+(string)
+: Returns a secure password at specified length.
 
 ## Examples
 

@@ -15,7 +15,8 @@ sqlTime(string|integer|null $datetime): string
 
 ## Return Value
 
-Returns the SQL time for a given time or date/time, or current time if *datetime* is `null`.
+(string)
+: Returns the SQL time for a given time or date/time, or current time if *datetime* is `null`.
 
 ## Examples
 

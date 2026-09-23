@@ -15,7 +15,8 @@ permsConvert(int $perms = 0): string
 
 ## Return Value
 
-Returns a 4-digit octal permission string (e.g., `"0644"`, `"0755"`). If `0` is passed, it returns `"0"`
+(string)
+: Returns a 4-digit octal permission string (e.g., `"0644"`, `"0755"`). If `0` is passed, it returns `"0"`
 
 > :pushpin: Filesystem functions and classes like `DirectoryIterator` return file permissions as a combined decimal bitmask containing both the file type and the permissions. This method isolates and converts those permissions into the standard human-readable octal format.
 

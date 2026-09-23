@@ -23,7 +23,8 @@ normalizeWhere(array $array = []): array
 
 ## Return Value
 
-Returns the uniform array.
+(array)
+: Returns the uniform array.
 
 ## Examples
 

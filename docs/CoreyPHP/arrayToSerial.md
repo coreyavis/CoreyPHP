@@ -15,7 +15,8 @@ arrayToSerial(array $array = []): string
 
 ## Return Value
 
-Returns a serialized string containing the byte-stream representation of the array, ready for later unserialization.
+(string)
+: Returns a serialized string containing the byte-stream representation of the array, ready for later unserialization.
 
 ## Examples
 

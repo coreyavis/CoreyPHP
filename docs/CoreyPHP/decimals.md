@@ -21,7 +21,8 @@ decimals(integer|float $arg = 0, integer $dp = -1, bool $asString = false): stri
 
 ## Return Value
 
-Returns the rounded number as float, or as a string if `$asString` is set to `true`.
+(string|float)
+: Returns the rounded number as float, or as a string if `$asString` is set to `true`.
 
 ## Examples
 

@@ -21,7 +21,8 @@ passHash(string $pw, string $salt, ?string $algo = null): string
 
 ## Return Value
 
-Returns the combined hashed password and salt.
+(string)
+: Returns the combined hashed password and salt.
 
 > :pushpin: To ensure maximum security, this method strictly enforces the presence of both a password and a salt.
 >

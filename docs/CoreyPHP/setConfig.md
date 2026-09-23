@@ -19,7 +19,8 @@ setConfig(array $key): bool
 
 ## Return Value
 
-Returns `true` on success and `false` if config key doesn't exist.
+(bool)
+: Returns `true` on success and `false` if config key doesn't exist.
 
 ## Examples
 

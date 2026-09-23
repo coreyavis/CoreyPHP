@@ -15,9 +15,9 @@ timestamp(?string $date): integer|bool
 
 ## Return Value
 
-Returns the Unix timestamp for a given date/time, or current time if *date* is `null`.
-
-Returns `false` if the input is not valid date/time string.
+(integer|bool)
+: Returns the Unix timestamp for a given date/time, or current time if *date* is `null`.
+: Returns `false` if the input is not valid date/time string.
 
 ## Examples
 

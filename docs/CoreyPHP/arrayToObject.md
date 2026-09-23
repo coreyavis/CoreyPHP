@@ -20,7 +20,8 @@ arrayToObject(array $array = []): array|object
 
 ## Return Value
 
-Returns an object (or a mixed structure of arrays and objects) containing the converted data, depending on whether the top-level array was associtive or indexed.
+(array|object)
+: Returns an object (or a mixed structure of arrays and objects) containing the converted data, depending on whether the top-level array was associtive or indexed.
 
 ## Examples
 

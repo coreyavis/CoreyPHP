@@ -15,7 +15,8 @@ listTables(bool $refresh = false): array
 
 ## Return Value
 
-Returns an array of table names on success, or an empty array otherwise.
+(array)
+: Returns an array of table names on success, or an empty array otherwise.
 
 ## Examples
 

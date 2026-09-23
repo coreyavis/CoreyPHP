@@ -18,7 +18,8 @@ hash(string $data, ?string $algo = null): string
 
 ## Return Value
 
-Returns the succesfully hashed string or fallback string.
+(string)
+: Returns the succesfully hashed string or fallback string.
 
 > :pushpin: If a developer passes an invalid algorithm (e.g., a typo like `sha2560`) and the resulting exception is caught and suppressed by the application's global exception handler, the method refuses to return an empty string `''` or a silent, successful-looking hash.
 >

@@ -14,7 +14,8 @@ getAlgorithm(): string
 
 ## Return Value
 
-Returns a `string` representing the validated hashing algorithm name (e.g., `sha256`, `md5`).
+(string)
+: Returns a `string` representing the validated hashing algorithm name (e.g., `sha256`, `md5`).
 
 > :pushpin: The method determines which algorithm to return using a 3-step fallback chain:
 >

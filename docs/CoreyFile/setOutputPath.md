@@ -17,7 +17,8 @@ setOutputPath(string $path): bool
 
 ## Return Value
 
-Returns `true` if a valid absolute directory path was successfully resolved and set; otherwise, returns `false`.
+(bool)
+: Returns `true` if a valid absolute directory path was successfully resolved and set; otherwise, returns `false`.
 
 ### Path Resolution Flow
 

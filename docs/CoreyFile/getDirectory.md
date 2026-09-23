@@ -25,9 +25,9 @@ getDirectory(?string $directory = null, bool $details = false, bool $perms = fal
 
 ## Return Value
 
-Returns a merged array containing all found folders first, followed by all files.
-
-Returns `false` if the directory does not exist or cannot be parsed by either the main iterator or the fallback handler.
+(array|bool)
+: Returns a merged array containing all found folders first, followed by all files.
+: Returns `false` if the directory does not exist or cannot be parsed by either the main iterator or the fallback handler.
 
 ### Public Properties
 

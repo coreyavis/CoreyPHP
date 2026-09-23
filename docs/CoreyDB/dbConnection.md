@@ -26,7 +26,8 @@ dbConnection(?string $dbname, ?string $dbuser, ?string $dbpass, ?string $dbhost)
 
 ## Return Value
 
-Returns the current instance to allow for method chaining.
+(static)
+: Returns the current instance to allow for method chaining.
 
 ## Examples
 

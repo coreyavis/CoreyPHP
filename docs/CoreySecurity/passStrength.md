@@ -20,7 +20,8 @@ passStrength(string $pw, ?array &$data = []): string
 
 ## Return Value
 
-Returns the password security strength as percentage between `0%` to `100%`.
+(string)
+: Returns the password security strength as percentage between `0%` to `100%`.
 
 ### Scoring System & Rules
 

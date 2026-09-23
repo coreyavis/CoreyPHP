@@ -15,9 +15,9 @@ convertToBytes(string $size): integer
 
 ## Return Value
 
-Returns the converted size in bytes as an integer.
-
-Returns `-1` if the input string is exactly `-1` (representing an unlimited configuration in PHP).
+(integer)
+: Returns the converted size in bytes as an integer.
+: Returns `-1` if the input string is exactly `-1` (representing an unlimited configuration in PHP).
 
 ### Conversion
 

@@ -15,7 +15,8 @@ regenSession(bool $deleteOldSession = true): bool
 
 ## Return Value
 
-Returns `true` on success, or `false` if no active session exists.
+(bool)
+: Returns `true` on success, or `false` if no active session exists.
 
 ## Examples
 

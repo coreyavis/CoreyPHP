@@ -15,7 +15,8 @@ listAlgorithms(bool $refresh = false): array
 
 ## Return Value
 
-Returns an array of algorithm names on success, or an empty array otherwise.
+(array)
+: Returns an array of algorithm names on success, or an empty array otherwise.
 
 ## Examples
 

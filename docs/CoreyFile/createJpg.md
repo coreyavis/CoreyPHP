@@ -28,7 +28,8 @@ createJpg(string $filename, ?string $colors = null, integer $width = 1, integer 
 
 ## Return Value
 
-Returns the absolute `string` path to the saved file on success, or `false` on failure.
+(string|bool)
+: Returns the absolute `string` path to the saved file on success, or `false` on failure.
 
 ## Examples
 

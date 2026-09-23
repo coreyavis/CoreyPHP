@@ -17,7 +17,8 @@ passCodeMsg(integer $code): string
 
 ## Return Value
 
-Returns a descriptive label representing the evaluation of the score.
+(string)
+: Returns a descriptive label representing the evaluation of the score.
 
 | Score Code | Return Value | Context / Meaning |
 | --- | --- | --- |

@@ -18,7 +18,8 @@ versionByDate(string|integer|null $date = null, integer $patch = 0): string
 
 ## Return Value
 
-Returns the formatted version string (`YYYY.MM.PATCH`) or `'0.0.0'` on parse failure.
+(string)
+: Returns the formatted version string (`YYYY.MM.PATCH`) or `'0.0.0'` on parse failure.
 
 ## Examples
 

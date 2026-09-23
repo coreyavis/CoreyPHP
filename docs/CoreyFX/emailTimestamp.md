@@ -15,7 +15,8 @@ emailTimestamp(string|integer|null $date = null): string
 
 ## Return Value
 
-Returns the email timestamp for a given date/time, or current time if *date* is `null`.
+(string)
+: Returns the email timestamp for a given date/time, or current time if *date* is `null`.
 
 ## Examples
 

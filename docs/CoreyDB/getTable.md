@@ -14,7 +14,8 @@ getTable(): string|null
 
 ## Return Value
 
-Returns the current table name or `null` if no table has been defined.
+(string|null)
+: Returns the current table name or `null` if no table has been defined.
 
 ## Examples
 

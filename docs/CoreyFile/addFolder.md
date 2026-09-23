@@ -15,7 +15,8 @@ addFolder(string $folder): bool
 
 ## Return Value
 
-Returns `true` on success and `false` if the folder already exists or could not be created. 
+(bool)
+: Returns `true` on success and `false` if the folder already exists or could not be created. 
 
 ## Examples
 

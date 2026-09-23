@@ -16,9 +16,9 @@ getConfig(null): array
 
 ## Return Value
 
-Returns the value of a specific key if a parameter exists, or all config options as an array if no parameter is provided.
-
-Returns `false` if config key doesn't exist.
+(mixed|array)
+: Returns the value of a specific key if a parameter exists, or all config options as an array if no parameter is provided.
+: Returns `false` if config key doesn't exist.
 
 ## Example
 

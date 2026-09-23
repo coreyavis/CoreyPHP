@@ -15,7 +15,8 @@ filesizeConvert(int|float $bytes = 0): string
 
 ## Return Value
 
-Returns the formatted file size string rounded to two decimal places (where applicable), appended with the correct unit.
+(string)
+: Returns the formatted file size string rounded to two decimal places (where applicable), appended with the correct unit.
 
 ### Conversion
 

@@ -32,7 +32,8 @@ makeTimestamp(integer $year = 0, integer $month = 0, integer $day = 0, integer $
 
 ## Return Value
 
-Returns the calculated Unix timestamp as integer.
+(integer)
+: Returns the calculated Unix timestamp as integer.
 
 > :pushpin: If you need a timestamp for the current time without modifying any date/time components, use `timestamp()` directly. Calling `makeTimestamp()` with no arguments performs unnecessary regex validation and string concatenation before calling `timestamp()`.
 

@@ -14,7 +14,8 @@ errorHash(): string
 
 ## Return Value
 
-Returns a `string` containing `error_` prepended to a cryptographically secure, randomized 56-character hex string (total length of 62 characters).
+(string)
+: Returns a `string` containing `error_` prepended to a cryptographically secure, randomized 56-character hex string (total length of 62 characters).
 
 > :pushpin: This method serves as a critical security circuit breaker.
 >

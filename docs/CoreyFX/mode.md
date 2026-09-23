@@ -15,9 +15,9 @@ mode(array|integer ...$args): integer|array
 
 ## Return Value
 
-Returns the mode of all non-fractional real numbers or an array if there are multiple modes.
-
-Returns `0` if the input is empty or if there is no mode.
+(integer|array)
+: Returns the mode of all non-fractional real numbers or an array if there are multiple modes.
+: Returns `0` if the input is empty or if there is no mode.
 
 ## Examples
 

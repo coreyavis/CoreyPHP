@@ -17,9 +17,9 @@ sanitizeValue(mixed $value): mixed
 
 ## Return Value
 
-Returns the cleaned, trimmed string, if value is a string.
-
-Returns the unchanged value if value is non-string (e.g., integer, float, bool, null).
+(mixed)
+: Returns the cleaned, trimmed string, if value is a string.
+: Returns the unchanged value if value is non-string (e.g., integer, float, bool, null).
 
 ## Examples
 

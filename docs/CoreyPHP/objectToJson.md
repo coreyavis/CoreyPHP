@@ -15,7 +15,8 @@ objectToJson(array|object $object): string
 
 ## Return Value
 
-Returns a JSON formatted string representation of the object's properties and values.
+(string)
+: Returns a JSON formatted string representation of the object's properties and values.
 
 > :pushpin: Chains `objectToArray` and `arrayToJson` to recursively flatten nested object structures before encoding them into JSON.
 

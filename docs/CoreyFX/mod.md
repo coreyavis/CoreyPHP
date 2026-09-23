@@ -18,9 +18,9 @@ mod(string|integer|float $n = 0, integer|float $d = 1): float
 
 ## Return Value
 
-Returns the remainder as float.
-
-Returns `0` if there is no remainder.
+(float)
+: Returns the remainder as float.
+: Returns `0` if there is no remainder.
 
 ## Examples
 

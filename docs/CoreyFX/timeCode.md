@@ -26,7 +26,8 @@ timeCode(mixed $seconds = 0, integer $minutes = 0, integer $hours = 0, integer $
 
 ## Return Value
 
-Returns the formatted timecode representation of the given hours, minutes and seconds. Milliseconds are included only when provided.
+(string)
+: Returns the formatted timecode representation of the given hours, minutes and seconds. Milliseconds are included only when provided.
 
 > Format: `HH:MM:SS`   `-HH:MM:SS`   `HH:MM:SS.nnn`   `-HH:MM:SS.nnn`
 

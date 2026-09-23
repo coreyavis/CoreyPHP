@@ -15,7 +15,8 @@ removeSession(string $key): bool
 
 ## Return Value
 
-Returns `true` if successfully removed, or `false` if the key was not set.
+(bool)
+: Returns `true` if successfully removed, or `false` if the key was not set.
 
 ## Examples
 

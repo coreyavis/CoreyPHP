@@ -28,7 +28,8 @@ isValidOperator(?string $operator): bool
 
 ## Return Value
 
-Returns `true` if valid and `false` if invalid.
+(bool)
+: Returns `true` if valid and `false` if invalid.
 
 ## Examples
 

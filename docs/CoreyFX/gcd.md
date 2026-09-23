@@ -20,7 +20,8 @@ gcd(integer $a = 1, integer $b = 0): integer
 
 ## Return Value
 
-Returns the Greatest Common Divisor for the two numbers.
+(integer)
+: Returns the Greatest Common Divisor for the two numbers.
 
 ## Examples
 

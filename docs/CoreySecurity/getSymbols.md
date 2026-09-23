@@ -14,7 +14,8 @@ getSymbols(): string
 
 ## Return Value
 
-Returns a list of symbols as string.
+(string)
+: Returns a list of symbols as string.
 
 ## Examples
 

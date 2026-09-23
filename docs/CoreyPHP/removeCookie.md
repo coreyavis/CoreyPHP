@@ -15,9 +15,9 @@ method(string $key): bool
 
 ## Return Value
 
-Returns `true` if the removal header was successfully issued.
-
-Returns `false` if the cookie does not exist in `$_COOKIE` (logs a notice error).
+(bool)
+: Returns `true` if the removal header was successfully issued.
+: Returns `false` if the cookie does not exist in `$_COOKIE` (logs a notice error).
 
 > :pushpin: Unsets `$_COOKIE[$key]` immediately so the cookie is unavailable in the current PHP script execution.
 

@@ -18,9 +18,9 @@ isAssoc(array $array = [], bool $strict = false): bool
 
 ## Return Value
 
-Returns `true` on success and `false` on failure.
-
-Returns `false` for empty arrays or non-array inputs.
+(bool)
+: Returns `true` on success and `false` on failure.
+: Returns `false` for empty arrays or non-array inputs.
 
 ## Examples
 

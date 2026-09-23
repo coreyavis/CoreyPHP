@@ -29,7 +29,8 @@ getValidOutput(?string $output, bool &$valid = false): string
 
 ## Return Value
 
-Returns the **normalized** output data type string (e.g., returns `'integer'` even if `'int'` was provided). If the provided type is invalid, it returns the configuration default.
+(string)
+: Returns the **normalized** output data type string (e.g., returns `'integer'` even if `'int'` was provided). If the provided type is invalid, it returns the configuration default.
 
 | Standard PHP type | Alias |
 | --- | --- |

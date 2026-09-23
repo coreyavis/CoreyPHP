@@ -17,7 +17,8 @@ filename(string $filename): static
 
 ## Return Value
 
-Returns the current instance to allow for method chaining.
+(static)
+: Returns the current instance to allow for method chaining.
 
 ### Metadata
 

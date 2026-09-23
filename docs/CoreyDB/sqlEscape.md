@@ -18,7 +18,8 @@ sqlEscape(mixed $esc = null, bool $search = false): string
 
 ## Return Value
 
-Returns the escaped value.
+(string)
+: Returns the escaped value.
 
 ## Examples
 

@@ -26,7 +26,8 @@ output(string $output = 'auto'): static
 
 ## Return Value
 
-Returns the current instance to allow for method chaining.
+(static)
+: Returns the current instance to allow for method chaining.
 
 > If you explicitly request a scalar type (`string` or `integer`) but the database query returns a dataset containing multiple rows or columns, the data type request is ignored. To prevent data loss, the method will fall back and return the full dataset as an array.
 >

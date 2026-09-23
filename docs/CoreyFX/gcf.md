@@ -17,9 +17,9 @@ gcf(array|integer ...$args): integer
 
 ## Return Value
 
-Returns the Greatest Common Factor for the set of numbers.
-
-Returns `0` if the input is empty.
+(integer)
+: Returns the Greatest Common Factor for the set of numbers.
+: Returns `0` if the input is empty.
 
 ## Examples
 

@@ -17,7 +17,8 @@ executeRaw(string $sql): mixed
 
 ## Return Value
 
-Returns a dataset on success for select-type queries, or `true` on success and `false` on failure.
+(mixed)
+: Returns a dataset on success for select-type queries, or `true` on success and `false` on failure.
 
 ## Examples
 

@@ -24,7 +24,8 @@ timeConvert(mixed $seconds = 0, integer $minutes = 0, integer $hours = 0, intege
 
 ## Return Value
 
-Returns the converted hours, minutes, seconds and milliseconds into a single value representing the total duration in seconds.
+(mixed)
+: Returns the converted hours, minutes, seconds and milliseconds into a single value representing the total duration in seconds.
 
 ## Examples
 

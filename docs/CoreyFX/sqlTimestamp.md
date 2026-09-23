@@ -15,7 +15,8 @@ sqlTimestamp(string|integer|null $datetime): string
 
 ## Return Value
 
-Returns the SQL timestamp for a given date/time, or current time if *datetime* is `null`.
+(string)
+: Returns the SQL timestamp for a given date/time, or current time if *datetime* is `null`.
 
 ## Examples
 

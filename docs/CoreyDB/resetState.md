@@ -16,7 +16,8 @@ resetState(): bool
 
 ## Return Value
 
-Returns `true` upon successful reset.
+(bool)
+: Returns `true` upon successful reset.
 
 ## Examples
 

@@ -15,7 +15,8 @@ arrayToJson(array $array = []): string
 
 ## Return Value
 
-Returns the JSON-encoded string representation of the array.
+(string)
+: Returns the JSON-encoded string representation of the array.
 
 ## Examples
 
