@@ -17,7 +17,8 @@ startSession(string $id): string
 
 ## Return Value
 
-Returns the active session ID.
+(string)
+: Returns the active session ID.
 
 > :pushpin: The session ID can also be retrieved later with `$cphp->sessionId`.
 

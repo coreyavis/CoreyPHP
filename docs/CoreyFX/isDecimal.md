@@ -18,7 +18,8 @@ isDecimal(mixed $num, array &$matches): bool
 
 ## Return Value
 
-Returns `true` on success and `false` on failure.
+(bool)
+: Returns `true` on success and `false` on failure.
 
 If `$matches` is provided then an array is returned with the following:
 | Key | Example | Description |

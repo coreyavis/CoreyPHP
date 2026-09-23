@@ -19,7 +19,8 @@ codeToHex(string|int $colorCode): string
 
 ## Return Value
 
-Returns a lowercase, 7-character CSS-compatible hex value (e.g., `"#ffff00"`).
+(string)
+: Returns a lowercase, 7-character CSS-compatible hex value (e.g., `"#ffff00"`).
 
 ## Examples
 

@@ -18,7 +18,8 @@ credentialGen(integer $passLength = 16, ?string $algo = null): array
 
 ## Return Value
 
-Returns an `array` containing the generated credential details:
+(array)
+: Returns an `array` containing the generated credential details:
 
 | Key | Type | Description | Dependancy |
 | --- | --- | --- | --- |

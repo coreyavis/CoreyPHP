@@ -14,7 +14,8 @@ getLastQuery(): string|null
 
 ## Return Value
 
-Returns the last SQL query or `null` if no query to return.
+(string|null)
+: Returns the last SQL query or `null` if no query to return.
 
 ## Examples
 

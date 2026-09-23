@@ -19,7 +19,8 @@ colorToCode(string $color): string
 
 ## Return Value
 
-Returns the lowercase single-character representation of the color. Defaults to `"w"` (white) if the name is unrecognized.
+(string)
+: Returns the lowercase single-character representation of the color. Defaults to `"w"` (white) if the name is unrecognized.
 
 ## Examples
 

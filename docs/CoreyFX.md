@@ -76,6 +76,7 @@ The following methods are a collection of common mathematical functions.
 - [diff](CoreyFX/diff.md) - Difference/Subtraction calculator
 - [factors](CoreyFX/factors.md) - Factors calculator
 - [gcd](CoreyFX/gcd.md) - Greatest Common Divisor
+- [gcf](CoreyFX/gcf.md) - Greatest Common Factor
 - [lcm](CoreyFX/lcm.md) - Least Common Multiple
 - [mean](CoreyFX/mean.md) - Mean calculator
 - [median](CoreyFX/median.md) - Median calculator

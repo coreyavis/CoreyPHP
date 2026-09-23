@@ -14,7 +14,8 @@ getDiagnostics(): array
 
 ## Return Value
 
-Returns an array with the following environmental data:
+(array)
+: Returns an array with the following environmental data:
 
 | Category | Key | Type | Retrieval Method | Source Query / Internal Property |
 | --- | --- | --- | --- | --- |

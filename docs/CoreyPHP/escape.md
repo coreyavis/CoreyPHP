@@ -15,7 +15,8 @@ method(mixed $value): string
 
 ## Return Value
 
-Returns the UTF-8 safe, HTML-encoded string representation of the input.
+(string)
+: Returns the UTF-8 safe, HTML-encoded string representation of the input.
 
 ## Examples
 

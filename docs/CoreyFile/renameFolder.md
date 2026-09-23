@@ -18,7 +18,8 @@ renameFolder(string $folder, string $newFolder): bool
 
 ## Return Value
 
-Returns `true` on success, or `false` on failure (e.g., source does not exist, target already exists, or permission denied).
+(bool)
+: Returns `true` on success, or `false` on failure (e.g., source does not exist, target already exists, or permission denied).
 
 ## Examples
 

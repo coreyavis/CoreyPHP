@@ -15,7 +15,8 @@ exceptionMsg(\Throwable $exception): void
 
 ## Return Value
 
-Returns no value.
+(void)
+: Returns no value.
 
 > Terminates execution via `exit(1)`. The stylish debug visual will render to the screen only if `display_errors` is enabled or if the [debug](../Config.md#developer-config) configuration option evaluates to `true`.
 

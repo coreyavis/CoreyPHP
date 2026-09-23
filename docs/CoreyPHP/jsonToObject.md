@@ -15,9 +15,9 @@ jsonToObject(string $json): array|object
 
 ## Return Value
 
-Returns a PHP object (or array depending on the structure) on success.
-
-Returns an empty array (`[]`) if the JSON string is malformed or decodes into a non-array scalar value.
+(array|object)
+: Returns a PHP object (or array depending on the structure) on success.
+: Returns an empty array (`[]`) if the JSON string is malformed or decodes into a non-array scalar value.
 
 > :pushpin: Chains `jsonToArray` and `arrayToObject` to safely handle invalid JSON payloads without throwing uncaught exceptions.
 

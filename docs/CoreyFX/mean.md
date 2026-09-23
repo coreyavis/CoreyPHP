@@ -15,9 +15,9 @@ mean(array|integer|float ...$args): float
 
 ## Return Value
 
-Returns the mean (also known as the average) of all real numbers.
-
-Returns `0` if the input is empty.
+(float)
+: Returns the mean (also known as the average) of all real numbers.
+: Returns `0` if the input is empty.
 
 ## Examples
 

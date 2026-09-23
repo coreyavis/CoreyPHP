@@ -15,7 +15,8 @@ showTime(string|int|null $timestamp = null): string
 
 ## Return Value
 
-Returns a formatted time string.
+(string)
+: Returns a formatted time string.
 
 ## Examples
 

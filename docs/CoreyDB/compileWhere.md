@@ -16,7 +16,8 @@ compileWhere(): string
 
 ## Return Value
 
-Returns the compiled `WHERE` SQL conditional fragment.
+(string)
+: Returns the compiled `WHERE` SQL conditional fragment.
 
 ## Examples
 

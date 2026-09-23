@@ -16,7 +16,8 @@ startCode(): bool
 
 ## Return Value
 
-Returns `true` if output buffering was successfully started, or `false` on failure.
+(bool)
+: Returns `true` if output buffering was successfully started, or `false` on failure.
 
 ## Examples
 

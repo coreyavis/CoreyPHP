@@ -34,7 +34,8 @@ whereStr(string $column, mixed $value = null, string $op = '='): string
 
 ## Return Value
 
-Returns the `where` SQL statement.
+(string)
+: Returns the `where` SQL statement.
 
 ## Examples
 

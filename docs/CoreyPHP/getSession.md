@@ -15,7 +15,8 @@ getSession(?string $key = null): mixed
 
 ## Return Value
 
-Returns the value associated with the key, `null` if the key doesn't exist, or the full `$_SESSION` array if `$key` is `null`.
+(mixed)
+: Returns the value associated with the key, `null` if the key doesn't exist, or the full `$_SESSION` array if `$key` is `null`.
 
 ## Examples
 

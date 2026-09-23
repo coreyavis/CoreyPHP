@@ -15,9 +15,9 @@ timeCodeConvert(string $timecode = '00:00:00'): mixed
 
 ## Return Value
 
-Returns the converted timecode into a single integer value representing the total duration in seconds. Milliseconds are included only when provided.
-
-Returns `false` if invalid timecode.
+(mixed)
+: Returns the converted timecode into a single integer value representing the total duration in seconds. Milliseconds are included only when provided.
+: Returns `false` if invalid timecode.
 
 ## Examples
 

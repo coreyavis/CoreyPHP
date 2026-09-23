@@ -15,7 +15,8 @@ bindings(array $items): string
 
 ## Return Value
 
-Returns a string where each character represents the type of the corresponding item.
+(string)
+: Returns a string where each character represents the type of the corresponding item.
 
 | Character | Type |
 | --- | --- |

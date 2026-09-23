@@ -19,7 +19,8 @@ sanitizeData(mixed $data): mixed
 
 ## Return Value
 
-Returns the sanitized data structure with identical nesting and object types preserved. Objects are cloned during processing to prevent direct mutation of the original reference.
+(mixed)
+: Returns the sanitized data structure with identical nesting and object types preserved. Objects are cloned during processing to prevent direct mutation of the original reference.
 
 ## Examples
 

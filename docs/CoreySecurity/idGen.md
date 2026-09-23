@@ -18,7 +18,8 @@ idGen(integer $len = 12, ?string $prefix = null): string
 
 ## Return Value
 
-Returns a string consisting of the optional prefix and a cryptographically secure, random sequence of digits (`0-9`).
+(string)
+: Returns a string consisting of the optional prefix and a cryptographically secure, random sequence of digits (`0-9`).
 
 > If the length of the `$prefix` is close to or exceeds the target `$len`, the method automatically enforces a fallback minimum of 4 random digits to ensure the ID preserves a safe level of unique entropy and never crashes.
 >

@@ -21,7 +21,8 @@ kmh(integer|float $distance = 0, integer|float $time = 60, bool $asString = fals
 
 ## Return Value
 
-Returns kilometers per hour as a float, or a string depending on the optional boolean argument.
+(string|float)
+: Returns kilometers per hour as a float, or a string depending on the optional boolean argument.
 
 ## Examples
 

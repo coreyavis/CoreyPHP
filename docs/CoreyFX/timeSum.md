@@ -17,7 +17,8 @@ method(mixed ...$args): string
 
 ## Return Value
 
-Returns the formatted timecode representing the cumulative sum of all input arguments.
+(string)
+: Returns the formatted timecode representing the cumulative sum of all input arguments.
 
 ## Examples
 

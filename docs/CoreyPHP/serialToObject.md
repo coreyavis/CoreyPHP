@@ -15,9 +15,9 @@ serialToObject(string $serial): array|object
 
 ## Return Value
 
-Returns a PHP object (or array depending on structure) on success.
-
-Returns an empty array (`[]`) or object if the input is malformed, corrupted, or decodes into a non-array scalar value.
+(array|object)
+: Returns a PHP object (or array depending on structure) on success.
+: Returns an empty array (`[]`) or object if the input is malformed, corrupted, or decodes into a non-array scalar value.
 
 > :pushpin: Chains `serialToArray` and `arrayToObject` to safely parse serialized input while preventing PHP Object Injection vulnerabilities.
 

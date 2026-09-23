@@ -22,7 +22,8 @@ method(string $tag): string|integer
 
 ## Return Value
 
-Returns the dynamically resolved value of the matched tag. If the tag format is unrecognized, or if the keyword inside the tag is invalid, the original tag string is returned unmodified.
+(string|integer)
+: Returns the dynamically resolved value of the matched tag. If the tag format is unrecognized, or if the keyword inside the tag is invalid, the original tag string is returned unmodified.
 
 ## Examples
 

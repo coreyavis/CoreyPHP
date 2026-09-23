@@ -14,7 +14,8 @@ compileLimit(): string
 
 ## Return Value
 
-Returns the compiled `LIMIT` SQL conditional fragment.
+(string)
+: Returns the compiled `LIMIT` SQL conditional fragment.
 
 ## Examples
 

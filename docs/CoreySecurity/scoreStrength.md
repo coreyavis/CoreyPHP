@@ -18,7 +18,8 @@ scoreStrength(integer $score, string $type = 'add'): string
 
 ## Return Value
 
-Returns the formatted score as a string.
+(string)
+: Returns the formatted score as a string.
 
 ## Examples
 

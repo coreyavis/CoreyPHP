@@ -19,7 +19,8 @@ flipArray(array $array): array
 
 ## Return Value
 
-Returns the flipped array.
+(array)
+: Returns the flipped array.
 
 ## Examples
 

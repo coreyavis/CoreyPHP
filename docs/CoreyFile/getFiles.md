@@ -25,9 +25,9 @@ getFiles(?string $directory = null, bool $details = false, bool $perms = false):
 
 ## Return Value
 
-Returns an array containing only the found files (either as string names or metadata arrays).
-
-Returns `false` if the directory does not exist or cannot be parsed by either the main iterator or the fallback handler.
+(array|bool)
+: Returns an array containing only the found files (either as string names or metadata arrays).
+: Returns `false` if the directory does not exist or cannot be parsed by either the main iterator or the fallback handler.
 
 ### Public Properties
 

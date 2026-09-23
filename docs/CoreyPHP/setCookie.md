@@ -26,7 +26,8 @@ setCookie(string $key, mixed $value): bool
 
 ## Return Value
 
-Returns `true` if cookie headers were successfully sent to the browser, `false` otherwise.
+(bool)
+: Returns `true` if cookie headers were successfully sent to the browser, `false` otherwise.
 
 ## Examples
 

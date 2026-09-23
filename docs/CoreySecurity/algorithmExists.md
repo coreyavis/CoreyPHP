@@ -15,7 +15,8 @@ algorithmExists(string $algo): bool
 
 ## Return Value
 
-Returns `true` if the algorithm is supported and available on the server; otherwise returns `false`.
+(bool)
+: Returns `true` if the algorithm is supported and available on the server; otherwise returns `false`.
 
 ## Examples
 

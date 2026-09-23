@@ -14,7 +14,8 @@ compile(): string
 
 ## Return Value
 
-Returns the fully constructed SQL statement.
+(string)
+: Returns the fully constructed SQL statement.
 
 ## Examples
 

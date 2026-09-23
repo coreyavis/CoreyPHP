@@ -15,9 +15,9 @@ isJson(mixed $string): bool
 
 ## Return Value
 
-Returns `true` if the input is a valid JSON string representing an array or object.
-
-Returns `false` for scalar JSON values (e.g., `"dark"`, `"123"`, `"true"`), non-string values, or malformed JSON.
+(bool)
+: Returns `true` if the input is a valid JSON string representing an array or object.
+: Returns `false` for scalar JSON values (e.g., `"dark"`, `"123"`, `"true"`), non-string values, or malformed JSON.
 
 ## Examples
 

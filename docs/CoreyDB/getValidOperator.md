@@ -31,7 +31,8 @@ getValidOperator(?string $operator, bool &$valid = false): string
 
 ## Return Value
 
-Returns the **normalized MySQL operator** string (e.g., returns `'='` if `'=='` was provided, or `'<>'` if `'!='` was provided.) If the provided operator is invalid, then it defaults to `'='`.
+(string)
+: Returns the **normalized MySQL operator** string (e.g., returns `'='` if `'=='` was provided, or `'<>'` if `'!='` was provided.) If the provided operator is invalid, then it defaults to `'='`.
 
 ## Examples
 

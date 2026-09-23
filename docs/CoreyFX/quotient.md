@@ -15,11 +15,10 @@ quotient(array|integer|float ...$args): float
 
 ## Return Value
 
-Returns the quotient of all real numbers.
-
-Returns `0` if the input is empty.
-
-Returns `false` if divisor is `0`.
+(float)
+: Returns the quotient of all real numbers.
+: Returns `0` if the input is empty.
+: Returns `false` if divisor is `0`.
 
 > When the method calculates the quotient of a dataset, the resulting value may exceed the fixed-point precision limits of the output format. (ex. 0.0003 = 0)
 

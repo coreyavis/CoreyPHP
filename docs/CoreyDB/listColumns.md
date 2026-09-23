@@ -15,7 +15,8 @@ listColumns(bool $refresh = false): array
 
 ## Return Value
 
-Returns an array of column names on success, or an empty array otherwise.
+(array)
+: Returns an array of column names on success, or an empty array otherwise.
 
 ## Examples
 

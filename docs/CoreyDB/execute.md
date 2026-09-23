@@ -16,7 +16,8 @@ execute(): mixed
 
 ## Return Value
 
-Returns the result of the query depending on the SQL command executed and your configured output format:
+(mixed)
+: Returns the result of the query depending on the SQL command executed and your configured output format:
 
 - **`SELECT` / `SHOW`**: Returns the data set in your configured output format. (ex. array, json, object, serial, etc.). If the query returns zero rows, it safely maps to an appropriate empty representation based on that format (See: [formatData](formatData.md)).
 - **`INSERT`**: Returns the `int` ID of the newly inserted row on success, or `true` if no ID is generated.

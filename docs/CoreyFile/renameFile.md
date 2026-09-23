@@ -20,7 +20,8 @@ renameFile(string $filename, string $name): bool
 
 ## Return Value
 
-Returns `true` if the file was successfully renamed, or `false` on failure.
+(bool)
+: Returns `true` if the file was successfully renamed, or `false` on failure.
 
 ## Examples
 
@@ -38,7 +39,7 @@ $file->renameFile('oldnote.txt', 'newnote.txt');
 
 ## Related Methods
 
-[removeFile](removeFile.md)
+[copyFile](copyFile.md) | [removeFile](removeFile.md)
 
 ---
 [Home](../Home.md) | [CoreyFile](../CoreyFile.md) | [Structure](../CoreyFile.md#structure)

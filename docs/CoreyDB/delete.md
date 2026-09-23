@@ -21,7 +21,8 @@ delete(?string $column = null, mixed $value = null): static
 
 ## Return Value
 
-Returns the current instance to allow for method chaining.
+(static)
+: Returns the current instance to allow for method chaining.
 
 > NOTE: This method does not execute the query immediately. You must chain the `execute()` method at the end of your chain to run the query against the database.
 >

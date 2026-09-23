@@ -18,7 +18,8 @@ getParents(?string $path = null, bool $base = false): array
 
 ## Return Value
 
-Returns a list of parent directories as an array, ordered from deepest child directory up to the root drive.
+(array)
+: Returns a list of parent directories as an array, ordered from deepest child directory up to the root drive.
 
 ## Examples
 

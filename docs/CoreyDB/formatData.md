@@ -15,7 +15,8 @@ formatData(mixed $data): mixed
 
 ## Return Value
 
-Returns your query results as a cleanly unwrapped value, array, object, or string format, dynamically matching your specified `->output()` configuration.
+(mixed)
+: Returns your query results as a cleanly unwrapped value, array, object, or string format, dynamically matching your specified `->output()` configuration.
 
 ### Empty Result Fallback
 

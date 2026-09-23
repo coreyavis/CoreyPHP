@@ -14,7 +14,8 @@ getFileMetadata(): array
 
 ## Return Value
 
-Returns an associative array containing the file's structural details and formatted metrics.
+(array)
+: Returns an associative array containing the file's structural details and formatted metrics.
 
 | Key | Type | Description |
 | --- | --- | --- |

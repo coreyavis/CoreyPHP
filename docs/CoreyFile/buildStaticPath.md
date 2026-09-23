@@ -18,7 +18,8 @@ method(string $url, integer $depth = 0): string
 
 ## Return Value
 
-Returns the transformed, static relative path ending in `.html` (with optional fragment hashes preserved).
+(string)
+: Returns the transformed, static relative path ending in `.html` (with optional fragment hashes preserved).
 
 > :pushpin: This method decodes HTML entities (`&amp;` -> `&`) and replaces special characters in query values with underscores (`_`).
 >

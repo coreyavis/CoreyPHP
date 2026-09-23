@@ -16,7 +16,8 @@ getHostInfo(): string
 
 ## Return Value
 
-Returns the string representing the connection type and server host being utilized.
+(string)
+: Returns the string representing the connection type and server host being utilized.
 
 ## Examples
 

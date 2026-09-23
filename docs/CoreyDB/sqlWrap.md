@@ -33,7 +33,8 @@ sqlWrap(?string $wrap = null, string $type = 'key', string $op = %): ?string
 
 ## Return Value
 
-Returns the wrapped string.
+(?string)
+: Returns the wrapped string.
 
 ## Examples
 

@@ -15,9 +15,9 @@ passCheck(string $pw = ''): bool
 
 ## Return Value
 
-Returns `true` if the password contains at least one character from every enabled configuration class.
-
-Returns `false` if any required character class is missing.
+(bool)
+: Returns `true` if the password contains at least one character from every enabled configuration class.
+: Returns `false` if any required character class is missing.
 
 ## Examples
 

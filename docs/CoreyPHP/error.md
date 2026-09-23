@@ -25,7 +25,8 @@ error(string $msg = '', ErrorType|string $type = ErrorType::Notice): bool
 
 ## Return Value
 
-Returns `false` on completion.
+(bool)
+: Returns `false` on completion.
 
 ## Related Methods
 

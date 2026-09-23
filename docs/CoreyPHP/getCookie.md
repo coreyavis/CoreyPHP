@@ -15,9 +15,9 @@ getCookie(?string $key = null): mixed
 
 ## Return Value
 
-Returns the sanitized value (or array if JSON), or an associative array of all cookies (`key => value`).
-
-Returns `null` if `$key` is provided but does not exist.
+(mixed)
+: Returns the sanitized value (or array if JSON), or an associative array of all cookies (`key => value`).
+: Returns `null` if `$key` is provided but does not exist.
 
 ## Examples
 

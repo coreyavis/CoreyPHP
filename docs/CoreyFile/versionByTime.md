@@ -18,7 +18,8 @@ versionByTime(string|integer|null $time = null, bool $nightly = false): string
 
 ## Return Value
 
-Returns a formatted version string (`YYYY.DDD.H`) or `'0'` on parse failure.
+(string)
+: Returns a formatted version string (`YYYY.DDD.H`) or `'0'` on parse failure.
 
 ## Examples
 

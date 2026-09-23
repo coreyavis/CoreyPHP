@@ -15,7 +15,8 @@ timer(bool $lap = false): float
 
 ## Return Value
 
-Returns the elapsed microtime on *lap* or *stop* calls; returns `0` on *start*.
+(float)
+: Returns the elapsed microtime on *lap* or *stop* calls; returns `0` on *start*.
 
 ## Examples
 

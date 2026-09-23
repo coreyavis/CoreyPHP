@@ -15,7 +15,8 @@ objectToSerial(array|object $object): string
 
 ## Return Value
 
-Returns a PHP serialized string representation of the converted data structure.
+(string)
+: Returns a PHP serialized string representation of the converted data structure.
 
 > :pushpin: Chains `objectToArray` and `arrayToSerial` to ensure all nested objects are recursively transformed into associative arrays before serialization.
 

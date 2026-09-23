@@ -24,7 +24,8 @@ searchStr(string $str, string $op = '%'): string
 
 ## Return Value
 
-Returns the formatted search string.
+(string)
+: Returns the formatted search string.
 
 ## Examples
 

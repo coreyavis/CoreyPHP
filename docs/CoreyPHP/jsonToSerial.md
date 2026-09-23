@@ -15,9 +15,9 @@ jsonToSerial(string $json): string
 
 ## Return Value
 
-Returns a PHP serialized string representation of the decoded data structure on success.
-
-Returns a serialized empty array (`a:0:{}`) if the JSON string is malformed or decodes into a non-array scalar value.
+(string)
+: Returns a PHP serialized string representation of the decoded data structure on success.
+: Returns a serialized empty array (`a:0:{}`) if the JSON string is malformed or decodes into a non-array scalar value.
 
 > :pushpin: Chains `jsonToArray` and `arrayToSerial` to safely normalize input data prior to serialization.
 

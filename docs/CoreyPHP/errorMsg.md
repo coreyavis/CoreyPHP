@@ -24,7 +24,8 @@ errorMsg(int $e, string $msg = '', string $file = '', string|int $line = ''): ?b
 
 ## Return Value
 
-Returns `null` if global PHP error reporting is disabled (`error_reporting() === 0`), otherwise `true`.
+(?bool)
+: Returns `null` if global PHP error reporting is disabled (`error_reporting() === 0`), otherwise `true`.
 
 > Automatically terminates script execution with an `exit(1)` code if passing `E_USER_ERROR`.
 

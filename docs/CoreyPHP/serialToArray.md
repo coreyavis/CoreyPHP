@@ -15,9 +15,9 @@ serialToArray(string $serial): array
 
 ## Return Value
 
-Returns the decoded array on success.
-
-Returns an empty array (`[]`) if the string is malformed, corrupted, or decodes into a non-array scalar value.
+(array)
+: Returns the decoded array on success.
+: Returns an empty array (`[]`) if the string is malformed, corrupted, or decodes into a non-array scalar value.
 
 > :pushpin: Disables PHP class instantiation to prevent PHP Object Injection vulnerabilities, returning a safe `[]` fallback while logging a warning on failure.
 

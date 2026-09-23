@@ -15,7 +15,8 @@ timeString(mixed $seconds = 0): string
 
 ## Return Value
 
-Returns the converted seconds or timecode into a string containing hours, minutes, seconds and milliseconds if decimal is included.
+(string)
+: Returns the converted seconds or timecode into a string containing hours, minutes, seconds and milliseconds if decimal is included.
 
 ## Examples
 

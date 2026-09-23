@@ -18,7 +18,8 @@ factors(integer $num = 1, bool $prime = false): array
 
 ## Return Value
 
-Returns an array of factors, or prime factors if optional boolean is set.
+(array)
+: Returns an array of factors, or prime factors if optional boolean is set.
 
 ## Examples
 

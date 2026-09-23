@@ -22,7 +22,8 @@ endCode(): bool
 
 ## Return Value
 
-Returns `true` if a static HTML file was newly generated or updated on disk, or `false` if the content remained unchanged (skipped file write) or if writing failed.
+(bool)
+: Returns `true` if a static HTML file was newly generated or updated on disk, or `false` if the content remained unchanged (skipped file write) or if writing failed.
 
 ## Examples
 

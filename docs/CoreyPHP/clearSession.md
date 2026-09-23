@@ -14,7 +14,8 @@ clearSession(): bool
 
 ## Return Value
 
-Returns `true`, always.
+(bool)
+: Returns `true`, always.
 
 ## Examples
 

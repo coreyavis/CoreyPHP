@@ -15,9 +15,9 @@ product(array|integer|float ...$args): float
 
 ## Return Value
 
-Returns the product of all real numbers.
-
-Returns `0` if the input is empty.
+(float)
+: Returns the product of all real numbers.
+: Returns `0` if the input is empty.
 
 ## Examples
 

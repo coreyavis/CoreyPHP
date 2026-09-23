@@ -20,7 +20,8 @@ objectToArray(array|object $object): array
 
 ## Return Value
 
-Returns a fully converted associative array (or multi-dimensional array) containing the extracted object properties and values.
+(array)
+: Returns a fully converted associative array (or multi-dimensional array) containing the extracted object properties and values.
 
 ## Examples
 

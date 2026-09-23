@@ -18,9 +18,9 @@ formatDuration(string|integer $start = 0, string|integer $end = 0): string
 
 ## Return Value
 
-Returns a space-separated list of active time components (e.g., `"1 year 2 months"`, `"45 minutes"`).
-
-Returns `"0 seconds"` (or `"0 secs"`) if `$start` is missing, invalid, or identical to `$end`.
+(string)
+: Returns a space-separated list of active time components (e.g., `"1 year 2 months"`, `"45 minutes"`).
+: Returns `"0 seconds"` (or `"0 secs"`) if `$start` is missing, invalid, or identical to `$end`.
 
 ## Examples
 

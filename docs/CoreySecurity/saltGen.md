@@ -15,7 +15,8 @@ saltGen(integer $len = 32): string
 
 ## Return Value
 
-Returns a string consisting strictly of alphanumeric hexadecimal characters (`0-9`, `a-f`).
+(string)
+: Returns a string consisting strictly of alphanumeric hexadecimal characters (`0-9`, `a-f`).
 
 > :pushpin: Why a Salt is Required:
 >

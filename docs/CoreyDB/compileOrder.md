@@ -14,7 +14,8 @@ compileOrder(): string
 
 ## Return Value
 
-Returns the compiled `ORDER BY` SQL conditional fragment.
+(string)
+: Returns the compiled `ORDER BY` SQL conditional fragment.
 
 ## Examples
 

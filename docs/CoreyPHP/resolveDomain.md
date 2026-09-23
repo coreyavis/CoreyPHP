@@ -14,7 +14,8 @@ resolveDomain(): string
 
 ## Return Value
 
-Returns the trimmed, normalized domain string from configuration if set, or uses `autoDetectDomain()` to detect the domain if no explicit domain configuration exists.
+(string)
+: Returns the trimmed, normalized domain string from configuration if set, or uses `autoDetectDomain()` to detect the domain if no explicit domain configuration exists.
 
 > :pushpin: If the configured domain begins with `www.`, it returns a wildcard-prefixed domain string (e.g., `".example.com"`).
 

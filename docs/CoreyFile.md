@@ -54,8 +54,9 @@ The following methods are responsible for creating, editing, and modifying files
 - [addFolder](CoreyFile/addFolder.md) - Creates a folder
     - [removeFolder](CoreyFile/removeFolder.md) - Removes a folder
     - [renameFolder](CoreyFile/renameFolder.md) - Renames a folder
-- [removeFile](CoreyFile/removeFile.md) - Remove a file
-- [renameFile](CoreyFile/renameFile.md) - Rename a file
+- [copyFile](CoreyFile/copyFile.md) - Copies a file
+    - [removeFile](CoreyFile/removeFile.md) - Remove a file
+    - [renameFile](CoreyFile/renameFile.md) - Rename a file
 - [writeHtml](CoreyFile/writeHtml.md) - Creates a HTML file
 - [writeText](CoreyFile/writeText.md) - Creates a text file
 

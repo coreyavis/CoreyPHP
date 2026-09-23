@@ -15,7 +15,8 @@ databaseExists(string $dbname): bool
 
 ## Return Value
 
-Returns `true` on success and `false` on failure.
+(bool)
+: Returns `true` on success and `false` on failure.
 
 ## Examples
 

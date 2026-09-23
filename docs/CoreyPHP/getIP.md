@@ -5,7 +5,7 @@ Retrieves the local network IP address for the primary network interface.
 ## Usage
 
 ```
-getIP(bool $long = false): string|int
+getIP(bool $long = false): string|integer
 ```
 
 ## Parameters
@@ -15,7 +15,8 @@ getIP(bool $long = false): string|int
 
 ## Return Value
 
-Returns IP address.
+(string|integer)
+: Returns IP address.
 
 ## Examples
 
