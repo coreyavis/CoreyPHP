@@ -1,3 +1,11 @@
+# Files to ignore
+data.php
+index.php
+_MethodTemp.md
+CoreyForm.php
+CoreyTable.php
+.gitattributes
+
 # Folders to ignore
 /assets
 
