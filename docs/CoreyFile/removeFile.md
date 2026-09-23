@@ -33,7 +33,7 @@ $file->removeFile('file.txt');
 
 ## Related Methods
 
-[renameFile](renameFile.md)
+[copyFile](copyFile.md) | [renameFile](renameFile.md)
 
 ---
 [Home](../Home.md) | [CoreyFile](../CoreyFile.md) | [Structure](../CoreyFile.md#structure)

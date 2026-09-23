@@ -38,7 +38,7 @@ $file->renameFile('oldnote.txt', 'newnote.txt');
 
 ## Related Methods
 
-[removeFile](removeFile.md)
+[copyFile](copyFile.md) | [removeFile](removeFile.md)
 
 ---
 [Home](../Home.md) | [CoreyFile](../CoreyFile.md) | [Structure](../CoreyFile.md#structure)

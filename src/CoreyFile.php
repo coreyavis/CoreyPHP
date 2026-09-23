@@ -549,6 +549,87 @@ class CoreyFile extends CoreyPHP {
 	}
 	
 	/* ----------------------------------------------------------------------
+	 * CoreyFile::copyFile()
+	 * 
+	 * @param string $filename - The file to copy
+	 * @param string $destPath - Destination path
+	 * @return bool - File removal successful
+	 * ----------------------------------------------------------------------*/
+	public function copyFile(string $filename, string $destPath = ''): bool {
+		$path = (file_exists($filename)? realpath($filename) : realpath(rtrim($this->path, '/\\') . '/' . $filename));
+		$trustedRoot = realpath($this->path);
+		if (!$path || !$trustedRoot || !str_starts_with($path, $trustedRoot)) {
+			$this->error('File does not exist or access is restricted!', 'error');
+			return false;
+		}
+		if (!is_file($path)) {
+			$this->error('Target is a directory, not a file!', 'error');
+			return false;
+		}
+		if (!is_readable($path)) {
+			$this->error('Permission Denied: Cannot read source file!', 'error');
+			return false;
+		}
+		$destPath = rtrim(str_replace('\\', '/', trim($destPath)), '/');
+		if ($destPath !== '') {
+			$isAbsolute = (str_starts_with($destPath, '/') || str_starts_with($destPath, '\\') || (strlen($destPath) > 1 && $destPath[1] === ':'));
+			if ($isAbsolute) {
+				$targetDir = rtrim($destPath, '/\\');
+				if (!is_dir($targetDir)) {
+					if (!mkdir($targetDir, 0755, true) && !is_dir($targetDir)) {
+						$this->error('Failed to create destination directory!', 'error');
+						return false;
+					}
+				}
+			} else {
+				$targetDir = rtrim($this->path, '/\\') . '/' . trim($destPath, '/\\');
+				if (!is_dir($targetDir)) {
+					if (!$this->addFolder($destPath)) {
+						$this->error('Failed to create destination directory!', 'error');
+						return false;
+					}
+				}
+			}
+			$targetDir = realpath($targetDir);
+		} else {
+			$targetDir = $trustedRoot;
+		}
+		if (!$targetDir || !is_writeable($targetDir)) {
+			$this->error('Permission Denied: Target directory is not writable', 'error');
+			return false;
+		}
+		$ext = pathinfo($path, PATHINFO_EXTENSION);
+		$ext = ($ext !== ''? '.' . $ext : '');
+		$filename = pathinfo($path, PATHINFO_FILENAME);
+		$timestamp = date('Y-m-d_Hi');
+		if (($destPath === '') || ($targetDir === dirname($path))) {
+			$baseName = $filename . '_' . $timestamp;
+			$destPath = $targetDir . '/' . $baseName . $ext;
+			$counter = 1;
+			while (file_exists($destPath)) {
+				$destPath = $targetDir . '/' . $baseName . '_' . $counter . $ext;
+				$counter++;
+			}
+		} else {
+			$destPath = $targetDir . '/' . $filename . $ext;
+			if (file_exists($destPath)) {
+				$baseName = $filename . '_' . $timestamp;
+				$destPath = $targetDir . '/' . $baseName . $ext;
+				$counter = 1;
+				while (file_exists($destPath)) {
+					$destPath = $targetDir . '/' . $baseName . '_' . $counter . $ext;
+					$counter++;
+				}
+			}
+		}
+		if (!copy($path, $destPath)) {
+			$this->error('Failed to copy the file!', 'error');
+			return false;
+		}
+		return true;
+	}
+	
+	/* ----------------------------------------------------------------------
 	 * CoreyFile::removeFile()
 	 * 
 	 * @param string $filename - The file to remove
