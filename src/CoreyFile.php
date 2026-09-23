@@ -18,6 +18,7 @@ class CoreyFile extends CoreyPHP {
 	public private(set) string $modified = '';
 	public private(set) string $accessed = '';
 	public private(set) string $path = '';
+	public private(set) string $outputPath = '';
 	public private(set) int $files = 0;
 	public private(set) int $folders = 0;
 
@@ -436,6 +437,48 @@ class CoreyFile extends CoreyPHP {
 	// TODO: paginate
 	
 	/* ----------------------------------------------------------------------
+	 * CoreyFile::setOutputPath()
+	 * 
+	 * @param string $path - New output path to set
+	 * @return bool - Set output path successfully
+	 * ----------------------------------------------------------------------*/
+	public function setOutputPath(string $path): bool {
+		$resolvedPath = realpath($path);
+		$inputPartial = str_replace(array('\\', 'file://'), array('/', ''), $path);
+		$inputPartialClean = rtrim($inputPartial, '/\\') . '/';
+		$inputBasename = basename($inputPartialClean);
+		if ($resolvedPath === false) {
+			$allParents = $this->getParents();
+			if (is_array($allParents)) {
+				foreach ($allParents as $parentPath) {
+					if (str_ends_with($parentPath, $inputPartialClean)) {
+						$resolvedPath = realpath($parentPath);
+						break;
+					}
+				}
+			}
+		}
+		if ($resolvedPath === false) {
+			$childFolders = $this->getFolders(null, true);
+			if (is_array($childFolders)) {
+				foreach ($childFolders as $folderDetail) {
+					if ($folderDetail['folder'] === $inputBasename) {
+						$resolvedPath = realpath($folderDetail['path']);
+						break;
+					}
+				}
+			}
+		}
+		if ($resolvedPath === false) {
+			$this->error('Invalid output path! Directory does not exist.', 'warning');
+			return false;
+		}
+		$resolvedPath = rtrim(str_replace(array('\\', 'file://'), array('/', ''), $resolvedPath), '/\\') . '/';
+		$this->outputPath = $resolvedPath;
+		return true;
+	}
+	
+	/* ----------------------------------------------------------------------
 	 * CoreyFile::setPath()
 	 * 
 	 * @param string $path - New path to set
@@ -469,7 +512,7 @@ class CoreyFile extends CoreyPHP {
 			}
 		}
 		if ($resolvedPath === false) {
-			$this->error('Invalid path!', 'warning');
+			$this->error('Invalid path! Directory does not exist.', 'warning');
 			return false;
 		}
 		$resolvedPath = rtrim(str_replace(array('\\', 'file://'), array('/', ''), $resolvedPath), '/\\') . '/';
@@ -622,7 +665,8 @@ class CoreyFile extends CoreyPHP {
 		$filename = ltrim(basename($filename), '.');
 		$filename = preg_replace(self::FILENAMEREGEX, '_', pathinfo($filename, PATHINFO_FILENAME));
 		if (($filename === '') || ($filename === null)) $filename = 'file_' . time();
-		$path = rtrim($this->path, '/\\') . '/' . $filename . '.html';
+		$baseDir = !empty($this->outputPath)? $this->outputPath : $this->path;
+		$path = rtrim($baseDir, '/\\') . '/' . $filename . '.html';
 		if (!$overwrite && file_exists($path)) {
 			$this->error('The html file "' . $path . '" already exists!', 'warning');
 			return false;
@@ -656,7 +700,8 @@ class CoreyFile extends CoreyPHP {
 		$filename = ltrim(basename($filename), '.');
 		$filename = preg_replace(self::FILENAMEREGEX, '_', pathinfo($filename, PATHINFO_FILENAME));
 		if (($filename === '') || ($filename === null)) $filename = 'file_' . time();
-		$path = rtrim($this->path, '/\\') . '/' . $filename . '.txt';
+		$baseDir = !empty($this->outputPath)? $this->outputPath : $this->path;
+		$path = rtrim($baseDir, '/\\') . '/' . $filename . '.txt';
 		if (!$overwrite && file_exists($path)) {
 			$this->error('The text file "' . $path . '" already exists!', 'warning');
 			return false;
@@ -773,7 +818,8 @@ class CoreyFile extends CoreyPHP {
 	 * ----------------------------------------------------------------------*/
 	public function createJpg(string $filename, ?string $colors = null, int $width = 1, int $height = 1): string|bool {
 		$filename = pathinfo(basename($filename), PATHINFO_FILENAME);
-		$path = rtrim($this->path, '/\\') . '/' . $filename . '.jpg';
+		$baseDir = !empty($this->outputPath)? $this->outputPath : $this->path;
+		$path = rtrim($baseDir, '/\\') . '/' . $filename . '.jpg';
 		if (file_exists($path) && is_file($path)) {
 			$this->error('The jpg file "' . $path . '" already exists!', 'warning');
 			return false;
@@ -823,7 +869,8 @@ class CoreyFile extends CoreyPHP {
 	 * ----------------------------------------------------------------------*/
 	public function createPng(string $filename, ?string $colors = null, int $width = 1, int $height = 1): string|bool {
 		$filename = pathinfo(basename($filename), PATHINFO_FILENAME);
-		$path = rtrim($this->path, '/\\') . '/' . $filename . '.png';
+		$baseDir = !empty($this->outputPath)? $this->outputPath : $this->path;
+		$path = rtrim($baseDir, '/\\') . '/' . $filename . '.png';
 		if (file_exists($path) && is_file($path)) {
 			$this->error('The png file "' . $path . '" already exists!', 'warning');
 			return false;
@@ -901,13 +948,10 @@ class CoreyFile extends CoreyPHP {
 		$staticContent = str_replace(["\r\n", "\r"], "\n", $staticContent);
 		$staticContent = function_exists('mb_scrub')? mb_scrub($staticContent, 'UTF-8') : @iconv('UTF-8', 'UTF-8//IGNORE', $staticContent);
 		$staticContent = rtrim($staticContent, "\r\n") . PHP_EOL;
-		$originalPath = $this->path;
+		$baseDir = !empty($this->outputPath)? $this->outputPath : $this->path;
 		$targetFilename = pathinfo($relativePath, PATHINFO_FILENAME);
-		foreach ($dirSegments as $segment) {
-			$this->addFolder($segment);
-			$this->path = rtrim($this->path, '/\\') . '/' . $segment . '/';
-		}
-		$fullPath = $this->path . $targetFilename . '.html';
+		$targetDir = rtrim($baseDir, '/\\') . '/';
+		$fullPath = $targetDir . $targetFilename . '.html';
 		$written = false;
 		$shouldWrite = true;
 		if (file_exists($fullPath)) {
@@ -919,7 +963,6 @@ class CoreyFile extends CoreyPHP {
 		if ($shouldWrite) {
 			$written = $this->writeHtml($targetFilename, $staticContent, true);
 		}
-		$this->path = $originalPath;
 		ob_end_flush();
 		return $written;
 	}
