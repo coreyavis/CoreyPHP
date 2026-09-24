@@ -14,7 +14,7 @@ copyFile(string $filename, string $destPath = ''): bool
 : The name or path of the source file located within `$this->path`.
 
 **destPath** (string)
-: Optional target directory path. Accepts relative paths (e.g., `folder/subfolder`) or absolute paths (e.g., `/var/www/uploads`). (*default*: `$this->path`) *^(optional)^*
+: Optional target directory path. Accepts relative paths (e.g., `folder/subfolder`) or absolute paths (e.g., `/var/www/uploads`). (*default*: `''`) *^(optional)^*
 
 ## Return Value
 
@@ -22,6 +22,8 @@ copyFile(string $filename, string $destPath = ''): bool
 : Returns `true` if the file was copied successfully, or `false` on failure or permission/validation error.
 
 > :pushpin: Same-Directory Copy: Always appends a timestamp suffix in the format `YYYY-MM-DD_HHMM`.
+>
+> Different-Directory Copy: Keeps the original name unless a file with that name already exists, in which case it appends the timestamp suffix.
 >
 > Same-Minute Multi-Copy: Appends an incremental index (`_1`, `_2`, etc.) if multiple copies are created within the exact same minute.
 

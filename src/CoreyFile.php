@@ -541,11 +541,10 @@ class CoreyFile extends CoreyPHP {
 	// TODO: Add random folder generation
 	// TODO: Add folder permissions option
 	public function addFolder(string $folder): bool {
-		$folder = rtrim($this->path, '/\\') . '/' . trim($folder, '/\\') . '/';
-		if (!is_dir($folder)) {
-			return mkdir($folder);
-		}
-		return false;
+		$folder = str_replace('\\', '/', trim($folder));
+		$targetPath = rtrim(str_replace('\\', '/', $this->path), '/') . '/' . ltrim($folder, '/') . '/';
+		if (is_dir($targetPath)) return true;
+		return mkdir($targetPath, 0755, true);
 	}
 	
 	/* ----------------------------------------------------------------------
@@ -572,9 +571,9 @@ class CoreyFile extends CoreyPHP {
 		}
 		$destPath = rtrim(str_replace('\\', '/', trim($destPath)), '/');
 		if ($destPath !== '') {
-			$isAbsolute = (str_starts_with($destPath, '/') || str_starts_with($destPath, '\\') || (strlen($destPath) > 1 && $destPath[1] === ':'));
+			$isAbsolute = (str_starts_with($destPath, '/') || (strlen($destPath) > 1 && $destPath[1] === ':'));
 			if ($isAbsolute) {
-				$targetDir = rtrim($destPath, '/\\');
+				$targetDir = $destPath;
 				if (!is_dir($targetDir)) {
 					if (!mkdir($targetDir, 0755, true) && !is_dir($targetDir)) {
 						$this->error('Failed to create destination directory!', 'error');
@@ -602,7 +601,9 @@ class CoreyFile extends CoreyPHP {
 		$ext = ($ext !== ''? '.' . $ext : '');
 		$filename = pathinfo($path, PATHINFO_FILENAME);
 		$timestamp = date('Y-m-d_Hi');
-		if (($destPath === '') || ($targetDir === dirname($path))) {
+		$sourceDir = str_replace('\\', '/', dirname($path));
+		$normalizedTargetDir = str_replace('\\', '/', $targetDir);
+		if (($destPath === '') || ($normalizedTargetDir === $sourceDir)) {
 			$baseName = $filename . '_' . $timestamp;
 			$destPath = $targetDir . '/' . $baseName . $ext;
 			$counter = 1;
