@@ -6,7 +6,6 @@ CoreyForm.php
 CoreyTable.php
 staticsite.php
 staticsite.html
-.gitattributes
 
 # Folders to ignore
 /assets
