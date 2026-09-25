@@ -67,7 +67,9 @@ These configuration options are unique to its class.
 
 ### CoreyFile
 
-*No configuration options currently exist!*
+| Config Key | Default Value | Allowed Values | Description |
+| --- | --- | --- | --- |
+| copyAssets | true | *bool* | Copy local assets when using [endCode()](CoreyFile/endCode.md#copyAssets). |
 
 ### CoreyFX
 
