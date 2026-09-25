@@ -31,8 +31,11 @@ class CoreyFile extends CoreyPHP {
 	 * ----------------------------------------------------------------------*/
 	protected const BYTEORDERMARK = '/^\xEF\xBB\xBF/';
 	protected const DATEFORMAT = 'm/d/Y h:i A';
+	protected const EXTSRCREGEX = '#^(https?:|//|data:)#i';
 	protected const FILENAMEREGEX = '/[^a-zA-Z0-9_-]/';
 	protected const FILESIZEUNITS = '/^(\d+)\s*([ptgmk]b?)$/i';
+	protected const IMGSRCREGEX = '/<img\b[^>]*?\bsrc=["\']([^"\']+)["\']/is';
+	protected const LINKHREFREGEX = '/<link\b[^>]*?\bhref=["\']([^"\']+)["\']/is';
 	protected const PHPLINKREGEX = '/(href|action)=(["\'])([^"\']*\.php(?:\?[^"\']*)?)\2/i';
 	protected const TRAILINGWS = '/[ \t]+$/m';
 	protected const URLSLUGIFY = '/[^\w\-]/';
@@ -49,6 +52,7 @@ class CoreyFile extends CoreyPHP {
 	 * ----------------------------------------------------------------------*/
     public function __construct(array $userConfig = []) {
 		$defaults = [
+			'copyAssets' => true,
 			'debug' => false,
 			'override' => false
 		];
@@ -1045,6 +1049,9 @@ class CoreyFile extends CoreyPHP {
 		if ($shouldWrite) {
 			$written = $this->writeHtml($targetFilename, $staticContent, true);
 		}
+		if (!empty($this->outputPath) && ($this->outputPath !== $this->path) && ($this->getConfig('copyAssets') === true)) {
+			$this->processLocalAssets($staticContent);
+		}
 		ob_end_flush();
 		return $written;
 	}
@@ -1164,7 +1171,55 @@ class CoreyFile extends CoreyPHP {
 		$fullRelativePath = $subDirs . $fileName . '.html' . $fragment;
 		return str_repeat('../', $depth) . $fullRelativePath;
 	}
+	
+	/* ----------------------------------------------------------------------
+	 * CoreyFile::processLocalAssets()
+	 * 
+	 * @param string $htmlContent - HTML to process
+	 * @return void
+	 * @access private
+	 * ----------------------------------------------------------------------*/
+	// TODO: Change mkdir to addFolder
+	// TODO: Change copy to copyFile
+	private function processLocalAssets(string $htmlContent): void {
+		$assetUrls = [];
+		if (preg_match_all(self::IMGSRCREGEX, $htmlContent, $matches)) {
+			$assetUrls = array_merge($assetUrls, $matches[1]);
+		}
+		if (preg_match_all(self::LINKHREFREGEX, $htmlContent, $matches)) {
+			$assetUrls = array_merge($assetUrls, $matches[1]);
+		}
+		$assetUrls = array_unique(array_filter($assetUrls));
+		foreach ($assetUrls as $url) {
+			$urlClean = trim($url);
+			if (preg_match(self::EXTSRCREGEX, $urlClean)) continue;
+			$cleanPath = parse_url($urlClean, PHP_URL_PATH);
+			if (!$cleanPath) continue;
+			$normalizedPath = str_replace('\\', '/', $cleanPath);
+			$normalizedPath = preg_replace('#^(\.\./|\./)+#', '', $normalizedPath);
+			$normalizedPath = ltrim($normalizedPath, '/');
+			if ($normalizedPath === '') continue;
+			$resolvedRoot = realpath($this->path);
+			$baseSource = $resolvedRoot ? str_replace('\\', '/', $resolvedRoot) : rtrim(str_replace('\\', '/', $this->path), '/');
+			$sourceFilePath = $baseSource . '/' . $normalizedPath;
+			if (!file_exists($sourceFilePath)) continue;
+			$fileInfo = pathinfo($normalizedPath);
+			$subDir = ($fileInfo['dirname'] !== '.' && $fileInfo['dirname'] !== '') ? $fileInfo['dirname'] : '';
+			$destDir = rtrim(str_replace('\\', '/', $this->outputPath), '/');
+			if ($subDir !== '') {
+				$destDir .= '/' . $subDir;
+				if (!is_dir($destDir)) {
+					mkdir($destDir, 0755, true);
+				}
+			}
+			$targetFilePath = $destDir . '/' . $fileInfo['basename'];
+			if (!file_exists($targetFilePath)) {
+				copy($sourceFilePath, $targetFilePath);
+			}
+		}
+	}
 
 }
 
 ?>
+

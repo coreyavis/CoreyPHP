@@ -107,6 +107,7 @@ The following methods are either **private** or **protected**. They are document
 ### Helpers
 
 - [buildStaticPath](CoreyFile/buildStaticPath.md) - Creates nested static HTML relative directory paths
+- [processLocalAssets](CoreyFile/processLocalAssets.md) - Copies local assets in Static Site Generator
 
 ## Public Properties
 
