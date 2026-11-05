@@ -9,16 +9,16 @@ declare(strict_types=1);
 // TODO: Store phone number in format: E.164 (+17026015994) in varchar(20)
 
 class CoreyDB extends CoreyPHP {
-    
+
     /* ----------------------------------------------------------------------
 	 * Public Resources - DO NOT EDIT
 	 * ----------------------------------------------------------------------*/
 	public private(set) int $insertId = 0;
-    
+
     /* ----------------------------------------------------------------------
 	 * Private Resources - DO NOT EDIT
 	 * ----------------------------------------------------------------------*/
-	private mysqli $db;
+	private ?mysqli $db = null;
 	private ?string $engine = null;
 	private ?string $charset = null;
 	private ?string $collation = null;
@@ -46,7 +46,7 @@ class CoreyDB extends CoreyPHP {
 	private ?string $lastQuery = null;
 	private bool $orwhere = false;
 	private string $output = 'auto';
-    
+
     /* ----------------------------------------------------------------------
 	 * Constants / Regular Expressions - DO NOT EDIT
 	 * ----------------------------------------------------------------------*/
@@ -54,14 +54,14 @@ class CoreyDB extends CoreyPHP {
 	protected const SQLTIME = 'H:i:s';
 	protected const SQLTIMESTAMP = 'Y-m-d H:i:s';
 	protected const TAGREGEX = '/^\`?\[(\w+)\]\`?/i';
-	
+
 	/* ----------------------------------------------------------------------
 	 * Core
 	 * ----------------------------------------------------------------------*/
 
     /* ----------------------------------------------------------------------
 	 * CoreyDB::__construct()
-	 * 
+	 *
 	 * @param array $userConfig - Config options (optional)
 	 * ----------------------------------------------------------------------*/
     public function __construct(array $userConfig = []) {
@@ -86,14 +86,14 @@ class CoreyDB extends CoreyPHP {
 		$this->output = $this->getValidOutput($this->config['output']);
 		if ($this->getConfig('db.name')) $this->dbConnection();
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * Environment
 	 * ----------------------------------------------------------------------*/
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::dbConnection()
-	 * 
+	 *
 	 * @param string|null $dbname - Database name
 	 * @param string|null $dbuser - Database username
 	 * @param string|null $dbpass - Database password
@@ -132,10 +132,10 @@ class CoreyDB extends CoreyPHP {
 		}
 		return $this;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::dbSelect()
-	 * 
+	 *
 	 * @param string $dbname - Database name
 	 * @return bool true|false
 	 * ----------------------------------------------------------------------*/
@@ -150,14 +150,14 @@ class CoreyDB extends CoreyPHP {
 		}
 		return $dbselect;
 	}
-	
+
 	// TODO: charset (utf8mb4)
 	// TODO: collation (utf8mb4_unicode_ci)
 	// TODO: engine (InnoDB)
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::getDiagnostics()
-	 * 
+	 *
 	 * @return array - Server, database, and table information
 	 * ----------------------------------------------------------------------*/
 	public function getDiagnostics(): array {
@@ -200,41 +200,41 @@ class CoreyDB extends CoreyPHP {
 		}
 		return $diagnostics;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::getHostInfo()
-	 * 
+	 *
 	 * @return string - Host Info
 	 * ----------------------------------------------------------------------*/
 	public function getHostInfo(): string {
 		return $this->db->host_info;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::getProtocolVersion()
-	 * 
+	 *
 	 * @return int - Protocol version
 	 * ----------------------------------------------------------------------*/
 	public function getProtocolVersion(): int {
 		return $this->db->protocol_version;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::getServerVersion()
-	 * 
+	 *
 	 * @return string - Server version
 	 * ----------------------------------------------------------------------*/
 	public function getServerVersion(): string {
 		return $this->db->server_info;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * Inspectors
 	 * ----------------------------------------------------------------------*/
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::checkConnection()
-	 * 
+	 *
 	 * @return bool true|false
 	 * @access private
 	 * ----------------------------------------------------------------------*/
@@ -242,10 +242,10 @@ class CoreyDB extends CoreyPHP {
 		if (!isset($this->db) || !($this->db instanceof mysqli)) return $this->error('No database connection has been established!', 'error');
 		return true;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::databaseExists()
-	 * 
+	 *
 	 * @return bool true|false
 	 * @access private
 	 * ----------------------------------------------------------------------*/
@@ -255,10 +255,10 @@ class CoreyDB extends CoreyPHP {
 		if (!in_array($dbname, $databases)) return $this->error('The database `' . $dbname . '` does not exist or is blacklisted!', 'error');
 		return true;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::tableExists()
-	 * 
+	 *
 	 * @return bool true|false
 	 * @access private
 	 * ----------------------------------------------------------------------*/
@@ -268,10 +268,10 @@ class CoreyDB extends CoreyPHP {
 		if (!in_array($table, $tables)) return $this->error('The table `' . $table . '` does not exist!', 'notice');
 		return true;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::columnExists()
-	 * 
+	 *
 	 * @return bool true|false
 	 * @access private
 	 * ----------------------------------------------------------------------*/
@@ -281,35 +281,35 @@ class CoreyDB extends CoreyPHP {
 		if (!in_array($column, $columns)) return $this->error('The column `' . $column . '` does not exist!', 'notice');
 		return true;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * Structure
 	 * ----------------------------------------------------------------------*/
-	
+
 	// TODO: keys - getKeys(), getIndexes()
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::getLastQuery()
-	 * 
+	 *
 	 * @return string|null
 	 * ----------------------------------------------------------------------*/
 	// TODO: Create an option for storing queries in the database.
 	public function getLastQuery(): ?string {
 		return $this->lastQuery ?? null;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::getTable()
-	 * 
+	 *
 	 * @return string|null
 	 * ----------------------------------------------------------------------*/
 	public function getTable(): ?string {
 		return $this->table ?? null;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::setTable()
-	 * 
+	 *
 	 * @param string $table - Table name
 	 * @return $this
 	 * ----------------------------------------------------------------------*/
@@ -321,10 +321,10 @@ class CoreyDB extends CoreyPHP {
 		$this->listColumns(true);
 		return $this;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::listColumns()
-	 * 
+	 *
 	 * @param bool $refresh - Refresh the list
 	 * @return array - Columns list from current table
 	 * ----------------------------------------------------------------------*/
@@ -337,10 +337,10 @@ class CoreyDB extends CoreyPHP {
 		}
 		return $this->columns;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::listDatabases()
-	 * 
+	 *
 	 * @param bool $refresh - Refresh the list
 	 * @return array - Database list
 	 * ----------------------------------------------------------------------*/
@@ -349,10 +349,10 @@ class CoreyDB extends CoreyPHP {
 		if (empty($this->databases) || ($refresh === true)) $this->databases = $this->show('databases')->where('Database')->notIn($this->config['blacklist'])->output('array')->execute();
 		return $this->databases;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::listTables()
-	 * 
+	 *
 	 * @param bool $refresh - Refresh the list
 	 * @return array - Table list
 	 * ----------------------------------------------------------------------*/
@@ -365,14 +365,14 @@ class CoreyDB extends CoreyPHP {
 		}
 		return $this->tables;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * Modifiers
 	 * ----------------------------------------------------------------------*/
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::between()
-	 * 
+	 *
 	 * @param string|int|float $min - Minimum value
 	 * @param string|int|float|null $max - Maximum value
 	 * @return $this
@@ -397,10 +397,10 @@ class CoreyDB extends CoreyPHP {
 		$this->error('Between() method was ignored!');
 		return $this;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::filter()
-	 * 
+	 *
 	 * @param array|string $filters - List of column filters
 	 * @return $this
 	 * ----------------------------------------------------------------------*/
@@ -410,13 +410,13 @@ class CoreyDB extends CoreyPHP {
 		$this->queryParts['filter'] = $filters;
 		return $this;
 	}
-	
+
 	// TODO: group
 	// TODO: having?
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::in()
-	 * 
+	 *
 	 * @param array|string|int|float $args - List of In values
 	 * @return $this
 	 * ----------------------------------------------------------------------*/
@@ -438,10 +438,10 @@ class CoreyDB extends CoreyPHP {
 		$this->error('In() method was ignored!');
 		return $this;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::notIn()
-	 * 
+	 *
 	 * @param array|string|int|float $args - List of Not In values
 	 * @return $this
 	 * ----------------------------------------------------------------------*/
@@ -463,10 +463,10 @@ class CoreyDB extends CoreyPHP {
 		$this->error('NotIn() method was ignored!');
 		return $this;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::like()
-	 * 
+	 *
 	 * @param string $term - Search term
 	 * @param string $op - Search operator
 	 * @return $this
@@ -483,10 +483,10 @@ class CoreyDB extends CoreyPHP {
 		$this->error('Like() method was ignored!');
 		return $this;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::limit()
-	 * 
+	 *
 	 * @param int $limit - Limit value
 	 * @param int $offset - Offset of limit
 	 * @return $this
@@ -500,10 +500,10 @@ class CoreyDB extends CoreyPHP {
 		}
 		return $this;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::offset()
-	 * 
+	 *
 	 * @param int $offset - Offset of limit
 	 * @return $this
 	 * ----------------------------------------------------------------------*/
@@ -515,12 +515,12 @@ class CoreyDB extends CoreyPHP {
 		}
 		return $this;
 	}
-	
+
 	// TODO: modify
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::order()
-	 * 
+	 *
 	 * @param array|string $columns - List of Order By columns
 	 * @return $this
 	 * ----------------------------------------------------------------------*/
@@ -532,10 +532,10 @@ class CoreyDB extends CoreyPHP {
 		}
 		return $this;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::orderByValue()
-	 * 
+	 *
 	 * @param string $columns - Order By column
 	 * @param mixed $value - Order By value
 	 * @param bool $desc - Descending order
@@ -551,10 +551,10 @@ class CoreyDB extends CoreyPHP {
 		}
 		return $this;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::order()
-	 * 
+	 *
 	 * @param array|string $columns - List of columns for ascending order
 	 * @return $this
 	 * ----------------------------------------------------------------------*/
@@ -566,10 +566,10 @@ class CoreyDB extends CoreyPHP {
 		}
 		return $this;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::order()
-	 * 
+	 *
 	 * @param array|string $columns - List of columns for descending order
 	 * @return $this
 	 * ----------------------------------------------------------------------*/
@@ -581,12 +581,12 @@ class CoreyDB extends CoreyPHP {
 		}
 		return $this;
 	}
-	
+
 	// TODO: rowCount
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::where()
-	 * 
+	 *
 	 * @param string|null $column - Column name
 	 * @param mixed $value - Column value
 	 * @param string $op - Comparison operator
@@ -610,10 +610,10 @@ class CoreyDB extends CoreyPHP {
 		}
 		return $this;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::andWhere()
-	 * 
+	 *
 	 * @param array $array - Where array
 	 * @return $this
 	 * ----------------------------------------------------------------------*/
@@ -632,10 +632,10 @@ class CoreyDB extends CoreyPHP {
 		}
 		return $this;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::orWhere()
-	 * 
+	 *
 	 * @param array $array - Where array
 	 * @return $this
 	 * ----------------------------------------------------------------------*/
@@ -654,17 +654,17 @@ class CoreyDB extends CoreyPHP {
 		}
 		return $this;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * Operations
 	 * ----------------------------------------------------------------------*/
-	
+
 	// TODO: alter
 	// TODO: create
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::delete()
-	 * 
+	 *
 	 * @param string|null $column - Column name
 	 * @param mixed $value - Column value
 	 * @return $this
@@ -677,14 +677,14 @@ class CoreyDB extends CoreyPHP {
 		if (($column !== null) && ($value !== null)) $this->where($column, $value);
 		return $this;
 	}
-	
+
 	// TODO: describe
 	// TODO: drop
 	// TODO: explain
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::insert()
-	 * 
+	 *
 	 * @param array|string $args - List of columns to update
 	 * @return $this
 	 * ----------------------------------------------------------------------*/
@@ -706,13 +706,13 @@ class CoreyDB extends CoreyPHP {
 		}
 		return $this;
 	}
-	
+
 	// TODO: insertID
 	// TODO: join
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::query()
-	 * 
+	 *
 	 * @param string $query - SQL query
 	 * @return $this
 	 * ----------------------------------------------------------------------*/
@@ -723,10 +723,10 @@ class CoreyDB extends CoreyPHP {
 		$this->queryParts['query'] = $sql;
 		return $this;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::replace()
-	 * 
+	 *
 	 * @param array|string $args - List of columns to update
 	 * @return $this
 	 * ----------------------------------------------------------------------*/
@@ -750,12 +750,12 @@ class CoreyDB extends CoreyPHP {
 		}
 		return $this;
 	}
-	
+
 	// TODO: rollup
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::select()
-	 * 
+	 *
 	 * @param array|string $args - List of columns to select
 	 * @return $this
 	 * ----------------------------------------------------------------------*/
@@ -781,10 +781,10 @@ class CoreyDB extends CoreyPHP {
 		$this->queryParts['select'] = $args;
 		return $this;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::select()
-	 * 
+	 *
 	 * @param string $column - Column to select
 	 * @param string $as - Rename as
 	 * @param string $concat - Columns and strings to concat with $column
@@ -809,10 +809,10 @@ class CoreyDB extends CoreyPHP {
 		}
 		return $this;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::show()
-	 * 
+	 *
 	 * @param string $keyword - Keyword that matches show statement
 	 * @return $this
 	 * ----------------------------------------------------------------------*/
@@ -843,12 +843,12 @@ class CoreyDB extends CoreyPHP {
 		$this->queryParts['show'] = $arg;
 		return $this;
 	}
-	
+
 	// TODO: truncate
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::update()
-	 * 
+	 *
 	 * @param array|string $args - List of columns to update
 	 * @return $this
 	 * ----------------------------------------------------------------------*/
@@ -874,10 +874,10 @@ class CoreyDB extends CoreyPHP {
 		}
 		return $this;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::values()
-	 * 
+	 *
 	 * @param mixed $args - List of values for insert and update
 	 * @return $this
 	 * ----------------------------------------------------------------------*/
@@ -888,14 +888,14 @@ class CoreyDB extends CoreyPHP {
 		$this->queryParts['bindings'][$this->command] = $bindings;
 		return $this;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * Execution
 	 * ----------------------------------------------------------------------*/
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::execute()
-	 * 
+	 *
 	 * @return mixed - Output data
 	 * ----------------------------------------------------------------------*/
 	// TODO: Change table check to method like checkConnection
@@ -971,10 +971,10 @@ class CoreyDB extends CoreyPHP {
 		/* Return */
 		return $data;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::execute()
-	 * 
+	 *
 	 * @param string $sql - Sql code to execute
 	 * @return mixed - Output data
 	 * ----------------------------------------------------------------------*/
@@ -987,12 +987,12 @@ class CoreyDB extends CoreyPHP {
 		$result->free();
 		return $data;
 	}
-	
+
 	// TODO: maintenance
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::preview()
-	 * 
+	 *
 	 * @return string - Preview sql command
 	 * ----------------------------------------------------------------------*/
 	// TODO: Add an option to preview as HTML so user doesn't have to echo out sql.
@@ -1009,16 +1009,16 @@ class CoreyDB extends CoreyPHP {
 		$this->resetState();
 		return $sql;
 	}
-	
+
 	// TODO: test
-	
+
 	/* ----------------------------------------------------------------------
 	 * Compilers
 	 * ----------------------------------------------------------------------*/
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::compile()
-	 * 
+	 *
 	 * @return string - SQL statement
 	 * @access protected
 	 * ----------------------------------------------------------------------*/
@@ -1074,10 +1074,10 @@ class CoreyDB extends CoreyPHP {
 		}
 		return $this->lastQuery = trim($sql);
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::compileLimit()
-	 * 
+	 *
 	 * @return string - Limit query
 	 * @access protected
 	 * ----------------------------------------------------------------------*/
@@ -1100,10 +1100,10 @@ class CoreyDB extends CoreyPHP {
 		}
 		return $sql;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::compileOrder()
-	 * 
+	 *
 	 * @return string - Where query
 	 * @access protected
 	 * ----------------------------------------------------------------------*/
@@ -1125,10 +1125,10 @@ class CoreyDB extends CoreyPHP {
 		}
 		return $sql;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::compileWhere()
-	 * 
+	 *
 	 * @return string - Where query
 	 * @access protected
 	 * ----------------------------------------------------------------------*/
@@ -1141,18 +1141,18 @@ class CoreyDB extends CoreyPHP {
 		}
 		return $sql;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * Output
 	 * ----------------------------------------------------------------------*/
-	
+
 	// TODO: fetchAssoc
 	// TODO: fetchObject
 	// TODO: fetchRow
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::output()
-	 * 
+	 *
 	 * @param string $output - Output type
 	 * @return $this
 	 * ----------------------------------------------------------------------*/
@@ -1162,18 +1162,18 @@ class CoreyDB extends CoreyPHP {
 		if (!$isValid) $this->error('Invalid output data type! (' . $output . ')', 'notice');
 		return $this;
 	}
-	
+
 	// TODO: printOutput
-	
+
 	/* ----------------------------------------------------------------------
 	 * Utilities
 	 * ----------------------------------------------------------------------*/
-	
+
 	// TODO: funcParse
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::parseTag()
-	 * 
+	 *
 	 * @param string $tag - Tag to parse
 	 * @return string|int - Parsed tag
 	 * ----------------------------------------------------------------------*/
@@ -1195,10 +1195,10 @@ class CoreyDB extends CoreyPHP {
 		}
 		return $tag;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::sqlEscape()
-	 * 
+	 *
 	 * @param mixed $esc - Variable to escape
 	 * @param bool $search - Is search term
 	 * @return string - The escaped variable
@@ -1210,10 +1210,10 @@ class CoreyDB extends CoreyPHP {
 		$type = ($search === true) ? 'search' : 'var';
 		return $this->sqlWrap($esc, $type);
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::sqlWrap()
-	 * 
+	 *
 	 * @param string $wrap - Variable to wrap
 	 * @param string $type - The wrap type (key, search, var)
 	 * @param bool $startsWith - Type search start flag
@@ -1233,16 +1233,16 @@ class CoreyDB extends CoreyPHP {
 		}
 		return (($type == 'var') || ($type == 'variable')) ? "'$wrap'" : "`$wrap`";
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * Validation
 	 * ----------------------------------------------------------------------*/
-	
+
 	// TODO: isSameType
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::isValidOperator()
-	 * 
+	 *
 	 * @param string $operator - Operator to validate
 	 * @return bool - True on success
 	 * ----------------------------------------------------------------------*/
@@ -1251,10 +1251,10 @@ class CoreyDB extends CoreyPHP {
 		$allowedOperators = ['=', '==', '!=', '<>', '<', '>', '<=', '>=', '<=>', '%', '%=', '=%'];
 		return in_array($operator, $allowedOperators, true);
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::isValidOutput()
-	 * 
+	 *
 	 * @param string $output - Output type to validate
 	 * @return bool - True on success
 	 * ----------------------------------------------------------------------*/
@@ -1264,14 +1264,14 @@ class CoreyDB extends CoreyPHP {
 		$allowedOutputs = ['array', 'assoc', 'auto', 'integer', 'int', 'json', 'object', 'obj', 'serial', 'string', 'str'];
 		return in_array($output, $allowedOutputs, true);
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * Helpers
 	 * ----------------------------------------------------------------------*/
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::bindings()
-	 * 
+	 *
 	 * @param array $items - List of values to create bindings string from
 	 * @return string - Types for bindings
 	 * @access protected
@@ -1288,10 +1288,10 @@ class CoreyDB extends CoreyPHP {
 		}
 		return $types;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::formatData()
-	 * 
+	 *
 	 * @param mixed $data - Query data to format
 	 * @return mixed - Formatted data
 	 * @access protected
@@ -1350,10 +1350,10 @@ class CoreyDB extends CoreyPHP {
 		}
 		return $data;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::getValidOperator()
-	 * 
+	 *
 	 * @param string $operator - Operator to check
 	 * @param bool &$valid - Provided operator was valid (passed by reference)
 	 * @return string - Valid operator
@@ -1367,10 +1367,10 @@ class CoreyDB extends CoreyPHP {
 		if ($operator === '==') $operator = '=';
 		return $operator;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::getValidOutput()
-	 * 
+	 *
 	 * @param string $output - Output data type
 	 * @param bool &$valid - Provided output was valid (passed by reference)
 	 * @return string - Valid output data type
@@ -1385,10 +1385,10 @@ class CoreyDB extends CoreyPHP {
 		if ($output === 'str') $output = 'string';
 		return $output;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::normalizeWhere()
-	 * 
+	 *
 	 * @param array $array - Array to normalize
 	 * @return array $normalized - Normalized array
 	 * @access protected
@@ -1423,10 +1423,10 @@ class CoreyDB extends CoreyPHP {
 		}
 		return $normalized;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::resetState()
-	 * 
+	 *
 	 * @return bool - True
 	 * @access protected
 	 * ----------------------------------------------------------------------*/
@@ -1453,10 +1453,10 @@ class CoreyDB extends CoreyPHP {
 		$this->output = $this->config['output'];
 		return true;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::searchStr()
-	 * 
+	 *
 	 * @param string $str - Search string
 	 * @param bool $startsWith - Start flag
 	 * @param bool $endsWith - End flag
@@ -1471,10 +1471,10 @@ class CoreyDB extends CoreyPHP {
 		};
 		return $str;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::whereGroup()
-	 * 
+	 *
 	 * @param array $array - Nested array
 	 * @return $this
 	 * @access protected
@@ -1488,10 +1488,10 @@ class CoreyDB extends CoreyPHP {
 		if (!empty($group)) $this->queryParts['where'][] = '(' . implode($connector, $group) . ')';
 		return $this;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::whereStr()
-	 * 
+	 *
 	 * @param string $column - Column name
 	 * @param mixed $value - Column value
 	 * @param string $op - Comparison operator (=, !=, <>, >, <, >=, <=, <=>, %, %=, =%)
@@ -1530,20 +1530,20 @@ class CoreyDB extends CoreyPHP {
 		}
 		return $sql;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * Destruct
 	 * ----------------------------------------------------------------------*/
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyDB::__destruct()
-	 * 
+	 *
 	 * @return void
 	 * ----------------------------------------------------------------------*/
 	public function __destruct() {
 		$this->db->close();
 	}
-    
+
 }
 
 ?>
