@@ -58,14 +58,34 @@ class CoreyFile extends CoreyPHP {
 		];
 		$this->config = array_merge($defaults, $this->config);
 		parent::__construct($userConfig);
-		$trace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 2);
-		$file = basename($trace[0]['file']) ?? null;
-		if ($file !== null) $this->filename($file);
+		$file = $this->getCurrentFile();
+		$this->filename($file);
 	}
 
 	/* ----------------------------------------------------------------------
 	 * Environment
 	 * ----------------------------------------------------------------------*/
+
+	/* ----------------------------------------------------------------------
+	 * CoreyFile::getCurrentFile()
+	 *
+	 * @param string $filename - Name of file
+	 * @return ?string - Current running script
+	 * ----------------------------------------------------------------------*/
+	public static function getCurrentFile(): ?string {
+		$file = null;
+		$script = (isset($_SERVER['SCRIPT_FILENAME'])? realpath($_SERVER['SCRIPT_FILENAME']) : false);
+		if ($script) {
+			foreach (debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS) as $trace) {
+				if (isset($trace['file']) && (realpath($trace['file']) === $script)) {
+					$file = basename($script);
+					break;
+				}
+			}
+			if (!$file) $file = basename($_SERVER['SCRIPT_FILENAME']);
+		}
+		return $file;
+	}
 
 	/* ----------------------------------------------------------------------
 	 * CoreyFile::filename()
