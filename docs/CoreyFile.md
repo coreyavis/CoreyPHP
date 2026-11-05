@@ -19,7 +19,7 @@ The CoreyFile class provides a robust, object-oriented interface for interacting
     - [Helpers](#helpers)
 5. [Public Properties](#public-properties)
 6. [Configuration Options](#configuration-options)
-    
+
 ## Usage
 
 ```
@@ -108,6 +108,8 @@ The following methods are either **private** or **protected**. They are document
 
 - [buildStaticPath](CoreyFile/buildStaticPath.md) - Creates nested static HTML relative directory paths
 - [processLocalAssets](CoreyFile/processLocalAssets.md) - Copies local assets in Static Site Generator
+- [processAndCopyAsset](CoreyFile/processAndCopyAsset.md) - Copies individual assets
+- [resolveRelativePath](CoreyFile/resolveRelativePath.md) - Normalizes relative paths
 
 ## Public Properties
 

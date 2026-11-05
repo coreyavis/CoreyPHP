@@ -37,7 +37,9 @@ class CoreyFile extends CoreyPHP {
 	protected const IMGSRCREGEX = '/<img\b[^>]*?\bsrc=["\']([^"\']+)["\']/is';
 	protected const LINKHREFREGEX = '/<link\b[^>]*?\bhref=["\']([^"\']+)["\']/is';
 	protected const PHPLINKREGEX = '/(href|action)=(["\'])([^"\']*\.php(?:\?[^"\']*)?)\2/i';
+	protected const SCRIPTSRCREGEX = '/<script\b[^>]*\bsrc=["\']([^"\']+)["\']/is';
 	protected const TRAILINGWS = '/[ \t]+$/m';
+	protected const URLREFREGEX = '/\burl\s*\(\s*(["\']?)([^)]+?)\1\s*\)/is';
 	protected const URLSLUGIFY = '/[^\w\-]/';
 	protected const WINDRIVELTR = '/^[a-zA-Z]:\\\\?$/';
 
@@ -1209,34 +1211,98 @@ class CoreyFile extends CoreyPHP {
 		if (preg_match_all(self::LINKHREFREGEX, $htmlContent, $matches)) {
 			$assetUrls = array_merge($assetUrls, $matches[1]);
 		}
+		if (preg_match_all(self::SCRIPTSRCREGEX, $htmlContent, $matches)) {
+			$assetUrls = array_merge($assetUrls, $matches[1]);
+		}
+		if (preg_match_all(self::URLREFREGEX, $htmlContent, $matches)) {
+			$assetUrls = array_merge($assetUrls, $matches[2]);
+		}
 		$assetUrls = array_unique(array_filter($assetUrls));
 		foreach ($assetUrls as $url) {
-			$urlClean = trim($url);
-			if (preg_match(self::EXTSRCREGEX, $urlClean)) continue;
-			$cleanPath = parse_url($urlClean, PHP_URL_PATH);
-			if (!$cleanPath) continue;
-			$normalizedPath = str_replace('\\', '/', $cleanPath);
-			$normalizedPath = preg_replace('#^(\.\./|\./)+#', '', $normalizedPath);
-			$normalizedPath = ltrim($normalizedPath, '/');
-			if ($normalizedPath === '') continue;
-			$resolvedRoot = realpath($this->path);
-			$baseSource = $resolvedRoot ? str_replace('\\', '/', $resolvedRoot) : rtrim(str_replace('\\', '/', $this->path), '/');
-			$sourceFilePath = $baseSource . '/' . $normalizedPath;
-			if (!file_exists($sourceFilePath)) continue;
-			$fileInfo = pathinfo($normalizedPath);
-			$subDir = ($fileInfo['dirname'] !== '.' && $fileInfo['dirname'] !== '') ? $fileInfo['dirname'] : '';
-			$destDir = rtrim(str_replace('\\', '/', $this->outputPath), '/');
-			if ($subDir !== '') {
-				$destDir .= '/' . $subDir;
-				if (!is_dir($destDir)) {
-					mkdir($destDir, 0755, true);
-				}
-			}
-			$targetFilePath = $destDir . '/' . $fileInfo['basename'];
-			if (!file_exists($targetFilePath)) {
-				copy($sourceFilePath, $targetFilePath);
+			$this->processAndCopyAsset($url, $this->path, $this->outputPath);
+		}
+	}
+
+	/* ----------------------------------------------------------------------
+	 * CoreyFile::processAndCopyAsset()
+	 *
+	 * @param string $url - Asset URL
+	 * @param string $path - File path
+	 * @param string $outputPath - Asset output path
+	 * @param string $cssSubDir - CSS Sub-directory
+	 * @return void
+	 * @access private
+	 * ----------------------------------------------------------------------*/
+	private function processAndCopyAsset(string $url, string $path, string $outputPath, string $cssSubDir = ''): void {
+		$urlClean = trim($url);
+		if (preg_match(self::EXTSRCREGEX, $urlClean)) return;
+		$cleanPath = parse_url($urlClean, PHP_URL_PATH);
+		if (!$cleanPath) return;
+		$normalizedPath = str_replace('\\', '/', $cleanPath);
+		if ($cssSubDir !== '' && str_starts_with($normalizedPath, '../') || !str_starts_with($normalizedPath, '/')) {
+       		$combined = $cssSubDir . '/' . $normalizedPath;
+       		$normalizedPath = $this->resolveRelativePath($combined);
+		} else {
+        	$normalizedPath = preg_replace('#^(\.\./|\./)+#', '', $normalizedPath);
+    	}
+		$normalizedPath = ltrim($normalizedPath, '/');
+		if ($normalizedPath === '') return;
+		$resolvedRoot = realpath($path);
+		$baseSource = $resolvedRoot ? str_replace('\\', '/', $resolvedRoot) : rtrim(str_replace('\\', '/', $path), '/');
+		$sourceFilePath = $baseSource . '/' . $normalizedPath;
+		if (!file_exists($sourceFilePath)) return;
+		$fileInfo = pathinfo($normalizedPath);
+		$subDir = ($fileInfo['dirname'] !== '.' && $fileInfo['dirname'] !== '') ? $fileInfo['dirname'] : '';
+		$destDir = rtrim(str_replace('\\', '/', $outputPath), '/');
+		if ($subDir !== '') {
+			$destDir .= '/' . $subDir;
+			if (!is_dir($destDir)) {
+				mkdir($destDir, 0755, true);
 			}
 		}
+		$targetFilePath = $destDir . '/' . $fileInfo['basename'];
+		$shouldCopy = false;
+		if (!file_exists($targetFilePath)) {
+			$shouldCopy = true;
+		} else {
+			$sourceTime = @filemtime($sourceFilePath);
+			$destTime = @filemtime($targetFilePath);
+			if (($sourceTime !== false) && ($destTime !== false) && ($sourceTime > $destTime)) {
+				$shouldCopy = true;
+			}
+		}
+		if ($shouldCopy === true) {
+			copy($sourceFilePath, $targetFilePath);
+		}
+		if (strtolower($fileInfo['extension'] ?? '') === 'css') {
+        	$cssContent = file_get_contents($sourceFilePath);
+        	if (preg_match_all(self::URLREFREGEX, $cssContent, $cssMatches)) {
+            	foreach ($cssMatches[2] as $cssAssetUrl) {
+                	$this->processAndCopyAsset($cssAssetUrl, $path, $outputPath, $fileInfo['dirname']);
+            	}
+        	}
+    	}
+	}
+
+	/* ----------------------------------------------------------------------
+	 * CoreyFile::resolveRelativePath()
+	 *
+	 * @param string $path - Relative path traversal
+	 * @return $resolved - Resolved path
+	 * @access private
+	 * ----------------------------------------------------------------------*/
+	private function resolveRelativePath(string $path): string {
+    	$parts = explode('/', str_replace('\\', '/', $path));
+    	$resolved = [];
+    	foreach ($parts as $part) {
+        	if ($part === '' || $part === '.') continue;
+        	if ($part === '..') {
+            	array_pop($resolved);
+        	} else {
+            	$resolved[] = $part;
+        	}
+    	}
+    	return implode('/', $resolved);
 	}
 
 }
