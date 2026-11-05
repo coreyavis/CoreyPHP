@@ -40,14 +40,14 @@ class CoreyFile extends CoreyPHP {
 	protected const TRAILINGWS = '/[ \t]+$/m';
 	protected const URLSLUGIFY = '/[^\w\-]/';
 	protected const WINDRIVELTR = '/^[a-zA-Z]:\\\\?$/';
-	
+
 	/* ----------------------------------------------------------------------
 	 * Core
 	 * ----------------------------------------------------------------------*/
 
     /* ----------------------------------------------------------------------
 	 * CoreyFile::__construct()
-	 * 
+	 *
 	 * @param array $userConfig - Config options (optional)
 	 * ----------------------------------------------------------------------*/
     public function __construct(array $userConfig = []) {
@@ -62,14 +62,14 @@ class CoreyFile extends CoreyPHP {
 		$file = basename($trace[0]['file']) ?? null;
 		if ($file !== null) $this->filename($file);
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * Environment
 	 * ----------------------------------------------------------------------*/
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyFile::filename()
-	 * 
+	 *
 	 * @param string $filename - Name of file
 	 * @return $this
 	 * ----------------------------------------------------------------------*/
@@ -102,10 +102,10 @@ class CoreyFile extends CoreyPHP {
     	$this->path = rtrim(str_replace('\\', '/', dirname($realPath)), '/\\') . '/';
     	return $this;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyFile::getDiagnostics()
-	 * 
+	 *
 	 * @return array - System information
 	 * ----------------------------------------------------------------------*/
 	public function getDiagnostics(): array {
@@ -138,10 +138,10 @@ class CoreyFile extends CoreyPHP {
 			]
 		];
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyFile::getDirectory()
-	 * 
+	 *
 	 * @param string $directory - Directory to retrieve
 	 * @param bool $details - Include details
 	 * @param bool $perms - Include permissions
@@ -237,10 +237,10 @@ class CoreyFile extends CoreyPHP {
 		$dir = array_merge($folders, $files);
 		return $dir;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyFile::getFileMetadata()
-	 * 
+	 *
 	 * @return $metadata - The files metadata as array
 	 * ----------------------------------------------------------------------*/
 	public function getFileMetadata(): array {
@@ -257,10 +257,10 @@ class CoreyFile extends CoreyPHP {
 		];
 		return $metadata;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyFile::getFiles()
-	 * 
+	 *
 	 * @param string $directory - Directory to retrieve folders from
 	 * @param bool $details - Include details
 	 * @param bool $perms - Include permissions
@@ -329,10 +329,10 @@ class CoreyFile extends CoreyPHP {
 		$this->files = (int) count($files);
 		return $files;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyFile::getFolders()
-	 * 
+	 *
 	 * @param string $directory - Directory to retrieve folders from
 	 * @param bool $details - Include details
 	 * @param bool $perms - Include permissions
@@ -397,10 +397,10 @@ class CoreyFile extends CoreyPHP {
 		$this->folders = (int) count($folders);
 		return $folders;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyFile::getParents()
-	 * 
+	 *
 	 * @param string $path - Path to get parents from
 	 * @param bool $base - Base folder names only
 	 * @return array $parents - List of parent directories
@@ -436,13 +436,13 @@ class CoreyFile extends CoreyPHP {
 		}
 		return $parents;
 	}
-	
+
 	// TODO: getWebDirectory?
 	// TODO: paginate
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyFile::setOutputPath()
-	 * 
+	 *
 	 * @param string $path - New output path to set
 	 * @return bool - Set output path successfully
 	 * ----------------------------------------------------------------------*/
@@ -481,10 +481,10 @@ class CoreyFile extends CoreyPHP {
 		$this->outputPath = $resolvedPath;
 		return true;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyFile::setPath()
-	 * 
+	 *
 	 * @param string $path - New path to set
 	 * @return bool - Set path successfully
 	 * ----------------------------------------------------------------------*/
@@ -531,14 +531,14 @@ class CoreyFile extends CoreyPHP {
 		$this->folders = 0;
 		return true;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * Structure
 	 * ----------------------------------------------------------------------*/
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyFile::addFolder()
-	 * 
+	 *
 	 * @param string $folder - Folder to create
 	 * @return bool - Folder creation successful
 	 * ----------------------------------------------------------------------*/
@@ -550,10 +550,10 @@ class CoreyFile extends CoreyPHP {
 		if (is_dir($targetPath)) return true;
 		return mkdir($targetPath, 0755, true);
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyFile::copyFile()
-	 * 
+	 *
 	 * @param string $filename - The file to copy
 	 * @param string $destPath - Destination path
 	 * @return bool - File removal successful
@@ -633,10 +633,10 @@ class CoreyFile extends CoreyPHP {
 		}
 		return true;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyFile::removeFile()
-	 * 
+	 *
 	 * @param string $filename - The file to remove
 	 * @return bool - File removal successful
 	 * ----------------------------------------------------------------------*/
@@ -657,10 +657,10 @@ class CoreyFile extends CoreyPHP {
 		}
 		return unlink($path);
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyFile::removeFolder()
-	 * 
+	 *
 	 * @param string $folder - Folder to remove
 	 * @return bool - True if removed
 	 * ----------------------------------------------------------------------*/
@@ -677,10 +677,10 @@ class CoreyFile extends CoreyPHP {
 		}
 		return false;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyFile::renameFile()
-	 * 
+	 *
 	 * @param string $filename - The file to rename
 	 * @param string $name - The new filename
 	 * @return bool - File rename successful
@@ -716,10 +716,10 @@ class CoreyFile extends CoreyPHP {
 		}
 		return rename($path, $destPath);
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyFile::renameFolder()
-	 * 
+	 *
 	 * @param string $folder - The folder to rename
 	 * @param string $newFolder - The new folder name
 	 * @return bool - Folder rename successful
@@ -737,10 +737,10 @@ class CoreyFile extends CoreyPHP {
 		}
 		return rename($folder, $newFolder);
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyFile::writeHtml()
-	 * 
+	 *
 	 * @param string $filename - The file name
 	 * @param string $code - Optional HTML code
 	 * @param bool $overwrite - Overwrite existing file
@@ -773,10 +773,10 @@ class CoreyFile extends CoreyPHP {
 		fclose($handle);
 		return $write !== false;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyFile::writeText()
-	 * 
+	 *
 	 * @param string $filename - The file name
 	 * @param string $text - Optional Text
 	 * @param bool $overwrite - Overwrite existing file
@@ -808,14 +808,14 @@ class CoreyFile extends CoreyPHP {
 		fclose($handle);
 		return $write !== false;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * Conversion
 	 * ----------------------------------------------------------------------*/
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyFile::convertToBytes()
-	 * 
+	 *
 	 * @param string $size - File size to convert
 	 * @return int - The converted size in bytes
 	 * ----------------------------------------------------------------------*/
@@ -836,10 +836,10 @@ class CoreyFile extends CoreyPHP {
 			default	=> $value
 		};
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyFile::filesizeConvert()
-	 * 
+	 *
 	 * @param int|float $bytes - Bytes to convert
 	 * @return string $bytes - The converted bytes
 	 * ----------------------------------------------------------------------*/
@@ -863,24 +863,24 @@ class CoreyFile extends CoreyPHP {
 		}
 		return $bytes;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyFile::permsConvert()
-	 * 
+	 *
 	 * @param int $perms - File type bitmask permissions to convert
 	 * @return string $perms - Permissions in octal
 	 * ----------------------------------------------------------------------*/
 	public function permsConvert(int $perms = 0): string {
 		return substr(sprintf('%o', $perms), -4);
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * Date and Time
 	 * ----------------------------------------------------------------------*/
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyFile::fileDate()
-	 * 
+	 *
 	 * @param int $date - Date timestamp to format
 	 * @return string $date - Formatted date
 	 * ----------------------------------------------------------------------*/
@@ -888,14 +888,14 @@ class CoreyFile extends CoreyPHP {
 		if ($date !== 0) return date(self::DATEFORMAT, $date);
 		return date(self::DATEFORMAT, time());
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * Image Generation
 	 * ----------------------------------------------------------------------*/
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyFile::createJpg()
-	 * 
+	 *
 	 * @param string $filename - The file name
 	 * @param string $colors - Color code string
 	 * @param int $width - Image width
@@ -943,10 +943,10 @@ class CoreyFile extends CoreyPHP {
 		$this->error('Failed to save the image to disk!', 'error');
 		return false;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyFile::createPng()
-	 * 
+	 *
 	 * @param string $filename - The file name
 	 * @param string $colors - Color code string
 	 * @param int $width - Image width
@@ -990,23 +990,23 @@ class CoreyFile extends CoreyPHP {
 		$this->error('Failed to save the image to disk!', 'error');
 		return false;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * Static Site Generator
 	 * ----------------------------------------------------------------------*/
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyFile::startCode()
-	 * 
+	 *
 	 * @return bool - Successful start
 	 * ----------------------------------------------------------------------*/
 	public function startCode(): bool {
 		return ob_start();
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyFile::endCode()
-	 * 
+	 *
 	 * @return bool - Successful write
 	 * ----------------------------------------------------------------------*/
 	public function endCode(): bool {
@@ -1055,21 +1055,21 @@ class CoreyFile extends CoreyPHP {
 		ob_end_flush();
 		return $written;
 	}
-	
+
 	// TODO: Method to show code, like in Github with line numbers
 	// TODO: outputCode
 	// TODO: outputFile
 	// TODO: saveFile
 	// TODO: savePath
 	// TODO: script
-	
+
 	/* ----------------------------------------------------------------------
 	 * Validation
 	 * ----------------------------------------------------------------------*/
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyFile::isEmpty()
-	 * 
+	 *
 	 * @param string $folder - Folder to check if empty
 	 * @return bool - True if empty
 	 * ----------------------------------------------------------------------*/
@@ -1082,14 +1082,14 @@ class CoreyFile extends CoreyPHP {
 		if ($files === false) return false;
 		return (count($files) <= 2);
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * Version Control
 	 * ----------------------------------------------------------------------*/
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyFile::nightlyBuild()
-	 * 
+	 *
 	 * @param string|int|null $date - Original release date
 	 * @return float - Nightly build
 	 * ----------------------------------------------------------------------*/
@@ -1100,10 +1100,10 @@ class CoreyFile extends CoreyPHP {
 		$diff = strtotime(date('Y-m-d')) - strtotime(date('Y-m-d', $timestamp));
 		return floor((($diff / 60) / 60) / 24);
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyFile::versionByDate()
-	 * 
+	 *
 	 * @param string|int|null $date - Original release date
 	 * @param int $patch - Patch iteration
 	 * @return string - Version string
@@ -1117,10 +1117,10 @@ class CoreyFile extends CoreyPHP {
 		}
 		return date('Y.m.', $timestamp) . $patch;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyFile::versionByTime()
-	 * 
+	 *
 	 * @param string|int|null $time - Original release date
 	 * @param bool $nightly - Include nightly build
 	 * @return string - Version string
@@ -1135,14 +1135,14 @@ class CoreyFile extends CoreyPHP {
 		$dayOfYear = (int) date('z', $timestamp) + 1;
 		return date('Y.', $timestamp) . $dayOfYear . date('.G', $timestamp) . ($nightly? '-' . $this->nightlyBuild($timestamp) : '');
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * Helpers
 	 * ----------------------------------------------------------------------*/
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyFile::buildStaticPath()
-	 * 
+	 *
 	 * @param string $url - URL of page
 	 * @param int $depth - Folder depth
 	 * @return bool - Successful write
@@ -1171,10 +1171,10 @@ class CoreyFile extends CoreyPHP {
 		$fullRelativePath = $subDirs . $fileName . '.html' . $fragment;
 		return str_repeat('../', $depth) . $fullRelativePath;
 	}
-	
+
 	/* ----------------------------------------------------------------------
 	 * CoreyFile::processLocalAssets()
-	 * 
+	 *
 	 * @param string $htmlContent - HTML to process
 	 * @return void
 	 * @access private
