@@ -26,7 +26,7 @@ resolveRelativePath(string $path): string
 
 ## Related Methods
 
-[processLocalAsset](processLocalAsset.md)
+[processLocalAssets](processLocalAssets.md)
 
 ---
 [Home](../Home.md) | [CoreyFile](../CoreyFile.md) | [Helpers](../CoreyFile.md#helpers)

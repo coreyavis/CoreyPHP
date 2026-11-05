@@ -43,7 +43,7 @@ processLocalAssets(string $htmlContent): void
 
 ## Related Methods
 
-[endCode](endCode.md) | [processAndCopyAsset](processAndCopyAsset)
+[endCode](endCode.md) | [processAndCopyAsset](processAndCopyAsset.md)
 
 ---
 [Home](../Home.md) | [CoreyFile](../CoreyFile.md) | [Helpers](../CoreyFile.md#helpers)
