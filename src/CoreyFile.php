@@ -1201,8 +1201,6 @@ class CoreyFile extends CoreyPHP {
 	 * @return void
 	 * @access private
 	 * ----------------------------------------------------------------------*/
-	// TODO: Change mkdir to addFolder
-	// TODO: Change copy to copyFile
 	private function processLocalAssets(string $htmlContent): void {
 		$assetUrls = [];
 		if (preg_match_all(self::IMGSRCREGEX, $htmlContent, $matches)) {
@@ -1233,14 +1231,17 @@ class CoreyFile extends CoreyPHP {
 	 * @return void
 	 * @access private
 	 * ----------------------------------------------------------------------*/
-	private function processAndCopyAsset(string $url, string $path, string $outputPath, string $cssSubDir = ''): void {
+	// TODO: Change mkdir to addFolder
+	// TODO: Change copy to copyFile
+	// TODO: Change json_decode to jsonToArray
+	private function processAndCopyAsset(string $url, string $path, string $outputPath, string $parentSubDir = ''): void {
 		$urlClean = trim($url);
 		if (preg_match(self::EXTSRCREGEX, $urlClean)) return;
 		$cleanPath = parse_url($urlClean, PHP_URL_PATH);
 		if (!$cleanPath) return;
 		$normalizedPath = str_replace('\\', '/', $cleanPath);
-		if ($cssSubDir !== '' && str_starts_with($normalizedPath, '../') || !str_starts_with($normalizedPath, '/')) {
-       		$combined = $cssSubDir . '/' . $normalizedPath;
+		if ($parentSubDir !== '' && str_starts_with($normalizedPath, '../') || !str_starts_with($normalizedPath, '/')) {
+       		$combined = $parentSubDir . '/' . $normalizedPath;
        		$normalizedPath = $this->resolveRelativePath($combined);
 		} else {
         	$normalizedPath = preg_replace('#^(\.\./|\./)+#', '', $normalizedPath);
@@ -1274,12 +1275,29 @@ class CoreyFile extends CoreyPHP {
 		if ($shouldCopy === true) {
 			copy($sourceFilePath, $targetFilePath);
 		}
-		if (strtolower($fileInfo['extension'] ?? '') === 'css') {
+		$extension = strtolower($fileInfo['extension'] ?? '');
+		if ($extension === 'css') {
         	$cssContent = file_get_contents($sourceFilePath);
         	if (preg_match_all(self::URLREFREGEX, $cssContent, $cssMatches)) {
             	foreach ($cssMatches[2] as $cssAssetUrl) {
                 	$this->processAndCopyAsset($cssAssetUrl, $path, $outputPath, $fileInfo['dirname']);
             	}
+        	}
+    	}
+		if ($extension === 'webmanifest' || $extension === 'json') {
+        	$jsonContent = file_get_contents($sourceFilePath);
+        	$data = json_decode($jsonContent, true);
+        	if (is_array($data)) {
+            	$extractManifestAssets = function($array) use (&$extractManifestAssets, $path, $outputPath, $fileInfo) {
+                	foreach ($array as $key => $value) {
+                    	if (is_array($value)) {
+                        	$extractManifestAssets($value);
+                    	} elseif (($key === 'src' || $key === 'url') && is_string($value)) {
+                        	$this->processAndCopyAsset($value, $path, $outputPath, $fileInfo['dirname']);
+                    	}
+                	}
+            	};
+            	$extractManifestAssets($data);
         	}
     	}
 	}
