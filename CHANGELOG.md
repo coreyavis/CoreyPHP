@@ -2,12 +2,31 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.2] - 2026-11-05
+### Added
+
+* Added: Recursive manifest/JSON inspection
+* Added: Internal and Inline CSS asset copying.
+
+### Fixed
+
+* Fixed: Documentation
+* Fix: Improved file detection using stack validation
+* Fixed: Initialize $db as a nullable mysqli property
+
+### Updated
+
+* Updated: Automated local asset copying and optimization
+* Un-hid gitattributes
+
 ## [1.0.1] - 2026-09-25
 ### Added
+
 * Added Local Asset Copying
 * Added copyFile method
 
 ### Updated
+
 * Recursive Folder Creation
 * Updated Documentation
 * Updated CoreyFile Documentation
@@ -16,6 +35,7 @@ All notable changes to this project will be documented in this file.
 
 ## [1.0.0] - 2026-08-12
 ### Added
+
 * Initial release of the project on [GitHub](https://github.com)
 * Core functionality and basic setup.
 * **MySQL Database Wrapper:** Created a streamlined database class to simplify interactions. Includes methods for selecting, updating, and displaying data seamlessly.
