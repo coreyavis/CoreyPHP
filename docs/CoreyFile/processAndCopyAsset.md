@@ -1,13 +1,13 @@
 # processAndCopyAsset *[Private]*
 
-Recursively validates, normalizes, optimizes, and copies individual assets into the output directory, with automatic recursive inspection and path resolution for CSS stylesheets.
+Recursively validates, normalizes, optimizes, and copies individual assets into the output directory, with automatic recursive inspection and path resolution for CSS stylesheets, Webmanifests, and JSON files.
 
 > :pushpin: This method is private and executed internally by `processLocalAssets()`.
 
 ## Usage
 
 ```
-processAndCopyAsset(string $url, string $path, string $outputPath, string $cssSubDir = ''): void
+processAndCopyAsset(string $url, string $path, string $outputPath, string $parentSubDir = ''): void
 ```
 
 ## Parameters
@@ -21,8 +21,8 @@ processAndCopyAsset(string $url, string $path, string $outputPath, string $cssSu
 **outputPath** (string)
 : The target output directory path (`$this->outputPath`).
 
-**cssSubDir** (string)
-: The relative subdirectory of the parent CSS file if called recursively from within a stylesheet. (*default*: `''`) *^(optional)^*
+**parentSubDir** (string)
+: The relative subdirectory of the parent file (CSS or JSON/Webmanifest) if called recursively. (*default*: `''`) *^(optional)^*
 
 ## Behavior & Process Flow
 
@@ -35,6 +35,8 @@ processAndCopyAsset(string $url, string $path, string $outputPath, string $cssSu
 4. Timestamp Optimization: Compares source and destination modification times (`filemtime`). Skips copying if the destination file is already up to date.
 
 5. Recursive CSS Inspection: If the copied file is a `.css` stylesheet, it reads the file contents, extracts any nested url(...) assets, and recursively calls `processAndCopyAsset()` for font and background image dependencies.
+
+6. Recursive Manifest/JSON Inspection: If the copied file is a `.webmanifest` or `.json` file, parses the JSON structure and recursively extracts and copies any referenced asset paths found under keys such as `"src"` or `"url"` (e.g., app icons and screenshots).
 
 ## Return Value
 
