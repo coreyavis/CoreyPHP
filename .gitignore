@@ -4,13 +4,10 @@ data.php
 _MethodTemp.md
 CoreyForm.php
 CoreyTable.php
-staticsite.php
-staticsite.html
 generate-changelog.php
 
 # Folders to ignore
 /assets
-/test
 
 # Extensions to ignore
 *.log
