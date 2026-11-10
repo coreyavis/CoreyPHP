@@ -4,10 +4,33 @@ Streamline your PHP development and accelerate your journey with this dual-purpo
 
 ## Table of Contents
 
-1. [Getting Started](#getting-started)
-2. [Classes](#classes)
-2. [Documentation](#documentation)
-3. [License](#license)
+1. [Classes](#classes)
+2. [Features](#features)
+3. [Getting Started](#getting-started)
+	- [Prerequisites](#prerequisites)
+	- [Usage](#usage)
+4. [Documentation](#documentation)
+5. [License](#license)
+6. [Contact & Links](#contact-and-links)
+
+## Classes
+
+All libraries inherit global configuration parsing, custom error tracking, and core utility methods directly from the core file:
+
+- **CoreyPHP**: Core Foundation, Global Settings, and Utility Base Class
+- **CoreyDB**: Database Management & Query Building
+- **CoreyFile**: File System Management
+- **CoreyFX**: Formulas and Equations
+- **CoreySecurity**: Security Suite
+
+## Features
+
+- **CoreyPHP**:
+	- Automatic Session Initialization
+	- [Color Code Utility System](docs/ColorCodes.md)
+- **CoreyDB**: Simple Database Startup and Management
+- **CoreyFile**: [Static Site Generator](docs/StaticSiteGenerator.md)
+- **CoreySecurity**: Credential Generator
 
 ## Getting Started
 
@@ -40,16 +63,6 @@ $fx = new CoreyFX();
 $db->method();
 ```
 
-## Classes
-
-All libraries inherit global configuration parsing, custom error tracking, and core utility methods directly from the core file:
-
-- **CoreyPHP**: Core Foundation, Global Settings, and Utility Base Class
-- **CoreyDB**: Database Management & Query Building
-- **CoreyFile**: File System Management
-- **CoreyFX**: Formulas and Equations
-- **CoreySecurity**: Security Suite
-
 ## Documentation
 
 - For full documentation see [CoreyPHP Documentation](docs/Home.md)
@@ -60,3 +73,7 @@ All libraries inherit global configuration parsing, custom error tracking, and c
 CoreyPHP is licensed under the [GNU General Public License v3.0](LICENSE)
 
 ![GitHub License](https://img.shields.io/github/license/coreyavis/CoreyPHP?branch=main)
+
+## Contact and Links
+
+- [CoreyPHP on Github](https://github.com/coreyavis/CoreyPHP)

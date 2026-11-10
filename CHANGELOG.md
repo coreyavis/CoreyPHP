@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [1.0.2] - 2026-11-05
+## [1.0.2] - 2026-11-06
 ### Added
 
 * Added: Recursive manifest/JSON inspection

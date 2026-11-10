@@ -5,9 +5,10 @@ This documentation will help give you a better understanding of how each class, 
 ## Table of Contents
 
 1. [Classes](#classes)
-2. [Getting Started](#getting-started)
+2. [Features](#features)
+3. [Getting Started](#getting-started)
     - [Prerequisites](#prerequisites)
-3. [Usage](#usage)
+4. [Usage](#usage)
     - [Methods](#methods)
         - [Class Methods](#class-methods)
         - [Inherited Core Methods](#inherited-core-methods)
@@ -26,6 +27,15 @@ Documentation by Class
 - [CoreyFile](CoreyFile.md): File System Management
 - [CoreyFX](CoreyFX.md): Formulas and Equations
 - [CoreySecurity](CoreySecurity.md): Security Suite
+
+## Features
+
+- **CoreyPHP**:
+	- Automatic Session Initialization
+	- [Color Code Utility System](docs/ColorCodes.md)
+- **CoreyDB**: Simple Database Startup and Management
+- **CoreyFile**: [Static Site Generator](docs/StaticSiteGenerator.md)
+- **CoreySecurity**: Credential Generator
 
 ## Getting Started
 

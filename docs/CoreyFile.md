@@ -83,6 +83,8 @@ The following methods are used to create images using the [CoreyPHP Color Code U
 
 ### Static Site Generator
 
+The following methods are part of the [CoreyPHP Static Site Generator](StaticSiteGenerator.md)
+
 - [startCode](CoreyFile/startCode.md) - Initializes output buffer
 - [endCode](CoreyFile/endCode.md) - Captures the buffered output and writes to file
 
