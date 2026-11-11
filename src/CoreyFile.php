@@ -815,11 +815,20 @@ class CoreyFile extends CoreyPHP {
 	 * @return bool - File creation successful
 	 * ----------------------------------------------------------------------*/
 	public function writeText(string $filename, string $text = '', bool $overwrite = false): bool {
-		$filename = ltrim(basename($filename), '.');
-		$filename = preg_replace(self::FILENAMEREGEX, '_', pathinfo($filename, PATHINFO_FILENAME));
-		if (($filename === '') || ($filename === null)) $filename = 'file_' . time();
 		$baseDir = !empty($this->outputPath)? $this->outputPath : $this->path;
-		$path = rtrim($baseDir, '/\\') . '/' . $filename . '.txt';
+		$filename = str_replace('\\', '/', trim($filename, '/\\'));
+		$dirPart = dirname($filename);
+		$filePart = ltrim(basename($filename), '.');
+		$filePart = preg_replace(self::FILENAMEREGEX, '_', pathinfo($filePart, PATHINFO_FILENAME));
+		if (($filePart === '') || ($filePart === null)) $filePart = 'file_' . time();
+		$targetDir = rtrim($baseDir, '/\\');
+		if ($dirPart !== '.' && $dirPart !== '') {
+			$targetDir .= '/' . $dirPart;
+			if (!is_dir($targetDir)) {
+				mkdir($targetDir, 0755, true);
+			}
+		}
+		$path = $targetDir . '/' . $filePart . '.txt';
 		if (!$overwrite && file_exists($path)) {
 			$this->error('The text file "' . $path . '" already exists!', 'warning');
 			return false;
