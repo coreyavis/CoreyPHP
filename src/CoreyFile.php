@@ -36,6 +36,7 @@ class CoreyFile extends CoreyPHP {
 	protected const FILESIZEUNITS = '/^(\d+)\s*([ptgmk]b?)$/i';
 	protected const IMGSRCREGEX = '/<img\b[^>]*?\bsrc=["\']([^"\']+)["\']/is';
 	protected const LINKHREFREGEX = '/<link\b[^>]*?\bhref=["\']([^"\']+)["\']/is';
+	protected const PARENTDIRREF = '#^\./+#';
 	protected const PHPLINKREGEX = '/(href|action)=(["\'])([^"\']*\.php(?:\?[^"\']*)?)\2/i';
 	protected const SCRIPTSRCREGEX = '/<script\b[^>]*\bsrc=["\']([^"\']+)["\']/is';
 	protected const TRAILINGWS = '/[ \t]+$/m';
@@ -770,11 +771,20 @@ class CoreyFile extends CoreyPHP {
 	 * ----------------------------------------------------------------------*/
 	// TODO: If $content = null, then add html template.
 	public function writeHtml(string $filename, ?string $code = null, bool $overwrite = false): bool {
-		$filename = ltrim(basename($filename), '.');
-		$filename = preg_replace(self::FILENAMEREGEX, '_', pathinfo($filename, PATHINFO_FILENAME));
-		if (($filename === '') || ($filename === null)) $filename = 'file_' . time();
 		$baseDir = !empty($this->outputPath)? $this->outputPath : $this->path;
-		$path = rtrim($baseDir, '/\\') . '/' . $filename . '.html';
+		$filename = str_replace('\\', '/', trim($filename, '/\\'));
+		$dirPart = dirname($filename);
+		$filePart = ltrim(basename($filename), '.');
+		$filePart = preg_replace(self::FILENAMEREGEX, '_', pathinfo($filePart, PATHINFO_FILENAME));
+		if (($filePart === '') || ($filePart === null)) $filePart = 'file_' . time();
+		$targetDir = rtrim($baseDir, '/\\');
+		if ($dirPart !== '.' && $dirPart !== '') {
+			$targetDir .= '/' . $dirPart;
+			if (!is_dir($targetDir)) {
+				mkdir($targetDir, 0755, true);
+			}
+		}
+		$path = $targetDir . '/' . $filePart . '.html';
 		if (!$overwrite && file_exists($path)) {
 			$this->error('The html file "' . $path . '" already exists!', 'warning');
 			return false;
@@ -1051,15 +1061,31 @@ class CoreyFile extends CoreyPHP {
 			$transformedLink = $this->buildStaticPath($rawUrl, $depth);
 			return "{$attr}={$quote}{$transformedLink}{$quote}";
 		}, $content);
+		if ($depth > 0) {
+			$staticContent = preg_replace_callback(self::IMGSRCREGEX, function ($matches) use ($depth) {
+				$tag = $matches[0];
+				$transformed = $this->buildStaticAssetPath($matches[1], $depth);
+				return str_replace($matches[1], $transformed, $tag);
+			}, $staticContent);
+			$staticContent = preg_replace_callback(self::LINKHREFREGEX, function ($matches) use ($depth) {
+				$tag = $matches[0];
+				$transformed = $this->buildStaticAssetPath($matches[1], $depth);
+				return str_replace($matches[1], $transformed, $tag);
+			}, $staticContent);
+			$staticContent = preg_replace_callback(self::SCRIPTSRCREGEX, function ($matches) use ($depth) {
+				$tag = $matches[0];
+				$transformed = $this->buildStaticAssetPath($matches[1], $depth);
+				return str_replace($matches[1], $transformed, $tag);
+			}, $staticContent);
+		}
 		$staticContent = preg_replace(self::BYTEORDERMARK, '', $staticContent);
 		$staticContent = str_replace("\0", '', $staticContent);
 		$staticContent = str_replace(["\r\n", "\r"], "\n", $staticContent);
 		$staticContent = function_exists('mb_scrub')? mb_scrub($staticContent, 'UTF-8') : @iconv('UTF-8', 'UTF-8//IGNORE', $staticContent);
 		$staticContent = rtrim($staticContent, "\r\n") . PHP_EOL;
 		$baseDir = !empty($this->outputPath)? $this->outputPath : $this->path;
-		$targetFilename = pathinfo($relativePath, PATHINFO_FILENAME);
-		$targetDir = rtrim($baseDir, '/\\') . '/';
-		$fullPath = $targetDir . $targetFilename . '.html';
+		$targetFilename = preg_replace('/\.html$/i', '', $relativePath);
+		$fullPath = rtrim($baseDir, '/\\') . '/' . $targetFilename . '.html';
 		$written = false;
 		$shouldWrite = true;
 		if (file_exists($fullPath)) {
@@ -1192,6 +1218,24 @@ class CoreyFile extends CoreyPHP {
 		$subDirs = !empty($pathSegments) ? implode('/', $pathSegments) . '/' : '';
 		$fullRelativePath = $subDirs . $fileName . '.html' . $fragment;
 		return str_repeat('../', $depth) . $fullRelativePath;
+	}
+
+	/* ----------------------------------------------------------------------
+	 * CoreyFile::buildStaticAssetPath()
+	 *
+	 * @param string $url - Asset URL
+	 * @param int $depth - Folder depth
+	 * @return string - Transformed asset path with relative depth
+	 * @access protected
+	 * ----------------------------------------------------------------------*/
+	protected function buildStaticAssetPath(string $url, int $depth = 0): string {
+		$url = htmlspecialchars_decode(trim($url));
+		if ($depth <= 0) return $url;
+		if (preg_match(self::EXTSRCREGEX, $url)) {
+			return $url;
+		}
+		$clean = preg_replace(self::PARENTDIRREF, '', $url);
+		return str_repeat('../', $depth) . $clean;
 	}
 
 	/* ----------------------------------------------------------------------
