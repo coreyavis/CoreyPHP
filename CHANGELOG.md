@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.3] - 2026-11-11
+### Fixed
+
+* Fixed endCode() and writeHtml() to support nested subdirectories and relative asset paths
+* Fixed Commit Sync for Documentation
+
+### Updated
+
+* Updated: writeText() to support nested subdirectories
+* Updated: Documentation and StaticSiteGenerator guide
+
 ## [1.0.2] - 2026-11-10
 ### Added
 
@@ -10,14 +21,12 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 
-* Fixed Commit Sync for Documentation
 * Fixed: Documentation
 * Fixed: Improved file detection using stack validation
 * Fixed: Initialize $db as a nullable mysqli property
 
 ### Updated
 
-* Updated: Documentation and StaticSiteGenerator guide
 * Updated: Automated local asset copying and optimization
 
 ## [1.0.1] - 2026-11-10
