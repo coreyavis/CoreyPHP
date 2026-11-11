@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [1.0.2] - 2026-11-06
+## [1.0.2] - 2026-11-10
 ### Added
 
 * Added: Recursive manifest/JSON inspection
@@ -10,30 +10,28 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 
+* Fixed Commit Sync for Documentation
 * Fixed: Documentation
-* Fix: Improved file detection using stack validation
+* Fixed: Improved file detection using stack validation
 * Fixed: Initialize $db as a nullable mysqli property
 
 ### Updated
 
+* Updated: Documentation and StaticSiteGenerator guide
 * Updated: Automated local asset copying and optimization
-* Un-hid gitattributes
 
-## [1.0.1] - 2026-09-25
+## [1.0.1] - 2026-11-10
 ### Added
 
-* Added Local Asset Copying
-* Added copyFile method
+* Added: Local asset copying
+* Added: Recursive folder creation
+* Added: copyFile method and documentation
 
 ### Updated
 
-* Recursive Folder Creation
-* Updated Documentation
-* Updated CoreyFile Documentation
-* Update to CoreyFile.php
-* Updated gitignore
+* Updated: CoreyFile class and documentation
 
-## [1.0.0] - 2026-08-12
+## [1.0.0] - 2026-11-10
 ### Added
 
 * Initial release of the project on [GitHub](https://github.com)
